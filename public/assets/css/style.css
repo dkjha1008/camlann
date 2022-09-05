@@ -589,7 +589,7 @@ img{
     color: #fff;
     font-size: 18px;
     border-radius: 8px;
-    padding: 14px 15px;
+    padding: 10px 15px;
     max-width: 172px;
 }
 .back-div>a:hover,.submit-short-btn:hover{
@@ -1042,7 +1042,75 @@ table {
     top: 13px;
 }
 
+.listing-search .row{
+    align-items: center;
+    flex-wrap: wrap;
+}
 
+.listing-search .input-box {
+    flex: 0 0 auto;
+    width: 20%;
+}
+.card {
+    margin-top: 40px;
+    box-shadow: 0 6px 9px rgb(0 0 0 / 17%);
+    padding: 20px;
+    margin-left: 10px;
+    align-items: center;
+} 
+img.card-img-top {
+    width: 195px;
+}
+.card-title {
+    text-align: center;
+    color: #000;
+}
+.card-text {
+    text-align: center;
+    color: #000;
+}
+.card-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+.view-btn:hover {
+    background: #231769;
+    color: #fff;
+}
+.view-btn {
+    color: #fff;
+    text-decoration: none;
+    background:var(--pink);
+    border: none;
+    min-width: 82px;
+    text-align: center;
+    padding: 5px 9px;
+    border-radius: 5px;
+}
+.modal-form input, textarea {
+    width: 100%;
+    margin-bottom: 15px;
+}
+.modal-form textarea{
+    min-height: 100px;
+}
+.modal-footer, .modal-header {
+    border: none !important;
+    color: #000;
+}
+p.nodata {
+    margin: 40px 0px;
+}
+.header-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+form.form-design {
+    width: 100%;
+}
 @media (max-width: 991px){
     .authentication-sec>div {
         width: 100%;
@@ -1138,3 +1206,13 @@ table {
         font-size: 15px;
     }
 }
+@media (max-width: 414px){
+
+.listing-search .input-box {
+    width: 100%;
+}
+.listing-search .row{
+   gap:15px;
+}
+}
+
