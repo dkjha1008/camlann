@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 <div class="container-for-box">
-	{!! Form::open(['route' => 'studio.games.store', 'class'=>'form-design']) !!}
+	{!! Form::open(['route' => 'studio.games.store', 'class'=>'form-design', 'enctype' => 'multipart/form-data']) !!}
         
 		@include('studio.games.form')
 		

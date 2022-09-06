@@ -6,27 +6,39 @@
 
 <div class="form-grouph img-upload-design">
 	<label>Title image upload</label>
-	<div class="avatar-upload avatar-second-img">
-		
-		<input type="file" name="image" accept=".png, .jpg, .jpeg" />
-		
-		{{--
+	<div class="avatar-upload">
 		<div class="avatar-edit">
-			<input type="file" name="image" id="imageUpload" accept=".png, .jpg, .jpeg" />
-			<label for="imageUpload">Drag Or Upload Your Title Image</label>
+			<input type='file' id="imageUpload" accept=".png, .jpg, .jpeg" />
+			<input type="hidden" name="image" id="upload-img" />
+			<label for="imageUpload"></label>
 		</div>
 		<div class="avatar-preview">
-			<div id="imagePreview" style="background-image: url({{asset('assets/images/banner-thumbnail.png')}});">
+			@if(@$game->full_image)
+			<div id="imagePreview" style="background-image: url({{ $game->full_image }});">
+				<img src="{{ $game->full_image }}">
 			</div>
+			@else
+			<div id="imagePreview" style="background-image: url({{asset('assets/images/add-png.png')}});">
+				<img src="{{asset('assets/images/add-png.png')}}">
+			</div>
+			@endif
+			
 		</div>
-		--}}
 	</div>
+	{!! $errors->first('image', '<span class="help-block">:message</span>') !!}
 </div>
 
+@php
+	$gameTags = [];
+	
+	if(@$game){
+		$gameTags = $game->gameTags->pluck('tags_id');
+	}
+@endphp
 <div class="form-flex two-column mb-15">
 	<div class="form-grouph select-custom-design{!! ($errors->has('tags') ? ' has-error' : '') !!}">
 		{!! Form::label('tags','Game Tags', ['class' => 'form-label']) !!}
-		{!! Form::select('tags[]', $tags, $userTags ?? null, ['class' => 'select-tags'.($errors->has('tags') ? ' is-invalid' : ''), 'multiple']) !!}
+		{!! Form::select('tags[]', $tags, $gameTags ?? null, ['class' => 'select-tags'.($errors->has('tags') ? ' is-invalid' : ''), 'multiple']) !!}
 		{!! $errors->first('tags', '<span class="help-block">:message</span>') !!}
 	</div>
 	
@@ -75,6 +87,10 @@
 		</div>
 		<p class="cstm-upload-text"></p>
 	</div>
+	
+	@if(@$game->full_attach_files)
+		<a target="_blank" href="{{ $game->full_attach_files }}">Attachment</a>
+	@endif
 </div>
 
 <div class="form-grouph input-design mb-15{!! ($errors->has('playable_demo') ? ' has-error' : '') !!}">
@@ -83,25 +99,28 @@
 	{!! $errors->first('playable_demo', '<span class="help-block">:message</span>') !!}
 </div>
 
-<div class="form-grouph input-design mb-15{!! ($errors->has('playable_demo') ? ' has-error' : '') !!}">
-	{!! Form::label('playable_demo','Link to playable demo', ['class' => 'form-label']) !!}
-	{!! Form::text('playable_demo', null, ['class' => ($errors->has('playable_demo') ? ' is-invalid' : '')]) !!}
-	{!! $errors->first('playable_demo', '<span class="help-block">:message</span>') !!}
-</div>
 
 <div class="form-grouph input-design mb-15">
 	<label>.Exe upload of playable demo</label>
 	<div class="d-flex align-items-center">
-		<div class="position-relative cstim-upload-btn">
-			<input type="file" class="file-upload" name="playable_demo_exe" accept=".exe">
-			<button class="upload-btn-design">Upload</button>
-		</div>
-		<p class="cstm-upload-text"></p>
+		<input type="file" name="playable_demo_exe" accept=".exe">
 	</div>
+	@if(@$game->full_exe)
+		<a target="_blank" href="{{ $game->full_exe }}">Uploaded Exe</a>
+	@endif
+</div>
+
+
+<div class="form-grouph radio-design mb-15{!! ($errors->has('status') ? ' has-error' : '') !!}">
+	{!! Form::label('status','Status', ['class' => 'form-label']) !!}
+	{!! Form::radio('status','1') !!} Active
+	{!! Form::radio('status','0') !!} De-active
+	{!! $errors->first('status', '<span class="help-block">:message</span>') !!}
 </div>
 
 
 @section('script')
+@include('includes.croppie')
 <link href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.css" rel="stylesheet" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.js"></script>
 
@@ -117,7 +136,7 @@
 			'X-CSRF-TOKEN': "{{ csrf_token() }}"
 		},
 		success: function (file, response) {
-			$('form').append('<input type="hidden" name="document[]" value="' + response.name + '">')
+			$('form').append('<input type="hidden" name="screenshots[]" value="' + response.name + '">')
 			uploadedDocumentMap[file.name] = response.name
 		},
 		removedfile: function (file) {
@@ -128,19 +147,34 @@
 				} else {
 				name = uploadedDocumentMap[file.name]
 			}
-			$('form').find('input[name="document[]"][value="' + name + '"]').remove()
+			$('form').find('input[name="screenshots[]"][value="' + name + '"]').remove()
 		},
 		init: function () {
-			/* @if(isset($project) && $project->document)
-			var files =
-			{!! json_encode($project->document) !!}
-			for (var i in files) {
-				var file = files[i]
+			let file;
+			@if(isset($game) && $game->full_screenshort)
+				@foreach($game->full_screenshort as $screenshort)
+				
+				file = "{{$screenshort}}";
+				
 				this.options.addedfile.call(this, file)
 				file.previewElement.classList.add('dz-complete')
-				$('form').append('<input type="hidden" name="document[]" value="' + file.file_name + '">')
-			}
-			@endif */
+				$('form').append('<input type="hidden" name="screenshots[]" value="' + file + '">')
+				
+				@endforeach
+			
+			
+			
+			/* var files = {!! $game->screenshots !!}
+			for (var i in files) {
+			
+				var file = files[i]
+				console.log(file)
+				console.log(this.options.addedfile.call(this, file))
+				this.options.addedfile.call(this, file)
+				file.previewElement.classList.add('dz-complete')
+				$('form').append('<input type="hidden" name="screenshots[]" value="' + file + '">')
+			} */
+			@endif
 		}
 	}
 </script>

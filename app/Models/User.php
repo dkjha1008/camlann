@@ -94,6 +94,11 @@ class User extends Authenticatable
     {
         return $this->hasMany(News::class, 'users_id', 'id');
     }
+	
+	public function games()
+    {
+        return $this->hasMany(Game::class, 'users_id', 'id');
+    }
 
 
 

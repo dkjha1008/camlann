@@ -17,7 +17,6 @@ return new class extends Migration
 			$table->engine = 'InnoDB';
             $table->id();
 			
-            $table->foreignId('users_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreignId('tags_id')->references('id')->on('tags')->onDelete('cascade');
             $table->foreignId('games_id')->references('id')->on('games')->onDelete('cascade');
 			
