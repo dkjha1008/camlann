@@ -5,11 +5,14 @@ namespace App\Http\Controllers\Studio;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Intervention\Image\ImageManagerStatic as Image;
-
-use App\Models\Tag;
-use App\Models\News;
-use App\Models\NewsTags;
 use Str;
+
+use App\Models\{
+    Tag,
+    News,
+	NewsTags
+};
+
 
 class NewsController extends Controller
 {

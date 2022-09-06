@@ -25,6 +25,7 @@
 					</select>
 				</div>
 			</div>
+			@if($user_type=='reporter')
 			<div class="col-md-3 input-box">
 				<div class="form-grouph select-design ">
 					<select wire:model="publication">
@@ -35,6 +36,7 @@
 					</select>
 				</div>
 			</div>
+			@endif
 			<div class="col-md-2 input-box">
 				<button class="submit-short-btn" type="button" wire:click="search" wire:loading.attr="disabled">
 					<i wire:loading wire:target="search" class="fa fa-spin fa-spinner"></i> {{__ ('Search') }}

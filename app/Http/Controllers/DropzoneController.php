@@ -9,8 +9,9 @@ class DropzoneController extends Controller
     //
 	public function index(Request $request)
 	{
-		$path = storage_path('tmp/uploads');
-
+		//$path = storage_path('tmp/uploads');
+		$path = ('storage/screenshorts/');
+		
 		if (!file_exists($path)) {
 			mkdir($path, 0777, true);
 		}

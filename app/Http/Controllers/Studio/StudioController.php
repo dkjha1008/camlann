@@ -4,9 +4,12 @@ namespace App\Http\Controllers\Studio;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Tag;
-use App\Models\UserStudio;
-use App\Models\UserTags;
+
+use App\Models\{
+    Tag,
+    UserStudio,
+	UserTags
+};
 
 class StudioController extends Controller
 {

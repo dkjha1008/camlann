@@ -20,12 +20,15 @@ return new class extends Migration
             $table->foreignId('users_id')->references('id')->on('users')->onDelete('cascade');
 			
 			$table->string('title');
+			$table->string('slug');
 			$table->string('image')->nullable();
+            $table->text('screenshots')->nullable();
             $table->text('comps')->nullable();
             $table->text('youtube')->nullable();
             $table->text('attach_files')->nullable();
 			$table->string('playable_demo')->nullable();
 			$table->string('playable_demo_exe')->nullable();
+            $table->enum('status', ['0', '1']);
 			
             $table->timestamps();
         });

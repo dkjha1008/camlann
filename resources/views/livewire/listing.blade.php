@@ -1,6 +1,19 @@
 <div>
     <form class="form-design">
 		<div class="row">
+		
+			
+			<div class="col-md-3">
+				<div class="form-grouph select-design">
+					<select wire:model="type">
+						<option value="">Select Type</option>
+						<option value="studio">Studio</option>
+						<option value="game">Game</option>
+						@endforeach
+					</select>
+				</div>
+			</div>
+			
 			<div class="col-md-3">
 				<div class="form-grouph input-design">
 					<input placeholder="Search keyword" wire:model="keyword" type="text">
@@ -28,6 +41,8 @@
 	
 	
 	<div class="row">
+		
+		@if($type=='studio')
 		@foreach($searchData as $user)
 		<div class="card col-md-3">
 			<img class="card-img-top" src="{{ $user->profile_pic }}" alt="Card image cap">
@@ -36,6 +51,8 @@
 				<p class="card-text">{{ $user->email }}</p>
 				<div class="card-btn">
 					<a class="view-btn" href="#">View</a>
+					
+					{{--
 					<!-- Button trigger modal -->
 					<button type="button" class=" view-btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
 						Contact
@@ -68,10 +85,33 @@
 							</div>
 						</div>
 					</div>
+					--}}
 				</div>
 			</div>
 		</div>
 		@endforeach
+		@endif
+		
+		
+		@if($type=='game')
+		@foreach($searchData as $game)
+		<div class="card col-md-3">
+			<img class="card-img-top" src="{{ $game->full_image }}" alt="Card image cap">
+			<div class="card-body">
+				<h5 class="card-title">{{ $game->title }}</h5>
+				<p class="card-text">{{ $user->comps }}</p>
+				<div class="card-btn">
+					<a class="view-btn" href="#">View</a>
+				</div>
+			</div>
+		</div>
+		@endforeach
+		@endif
+		
+		
+		
+		
+		
 		</div>
 	
 	

@@ -36,6 +36,17 @@
         let viewportHeight = 200;
         let boundaryWidth = 300;
         let boundaryHeight = 300;
+		
+		
+		@if(request()->routeIs('studio.games.create') || request()->routeIs('studio.games.edit'))
+			
+			$('.modal_style').addClass('modal-xl');
+			
+			viewportWidth = 800;
+			viewportHeight = 200;
+			boundaryWidth = 900;
+			boundaryHeight = 300;
+		@endif
 
         $image_crop = $('#image').croppie({
             enableExif: true,

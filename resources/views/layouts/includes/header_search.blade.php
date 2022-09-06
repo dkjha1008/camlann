@@ -2,8 +2,13 @@
 <form action="{{ route('studio.listing') }}" class="form-design">
 	<div class="row">
 		<div class="col-md-3">
+			<div class="form-grouph select-design">
+				{!! Form::select('user_type', ['reporter'=>'Reporter', 'streamer'=>'Streamer'], null, ['placeholder'=>'Select User Type', 'required']) !!}
+			</div>
+		</div>
+		<div class="col-md-3">
 			<div class="form-grouph input-design">
-				{!! Form::text('keyword', null, ['placeholder'=>'Search keyword', 'required']) !!}
+				{!! Form::text('keyword', null, ['placeholder'=>'Search keyword']) !!}
 			</div>
 		</div>
 		<div class="col-md-2">
@@ -17,6 +22,11 @@
 @if(auth()->user()->role=='reporter' && !request()->routeIs('reporter.listing'))
 <form action="{{ route('reporter.listing') }}" class="form-design">
 	<div class="row">
+		<div class="col-md-3">
+			<div class="form-grouph select-design">
+				{!! Form::select('type', ['studio'=>'Studio', 'game'=>'Game'], null, ['placeholder'=>'Select Type', 'required']) !!}
+			</div>
+		</div>
 		<div class="col-md-3">
 			<div class="form-grouph input-design">
 				{!! Form::text('keyword', null, ['placeholder'=>'Search keyword', 'required']) !!}
@@ -34,7 +44,7 @@
 	<div class="row">
 		<div class="col-md-3">
 			<div class="form-grouph select-design">
-				{!! Form::select('user_type', ['reporter'=>'Reporter', 'streamer'=>'Streamer'], null, ['placeholder'=>'Select User Type', 'required']) !!}
+				{!! Form::select('type', ['studio'=>'Studio', 'game'=>'Game'], null, ['placeholder'=>'Select Type', 'required']) !!}
 			</div>
 		</div>
 		<div class="col-md-3">
