@@ -1,5 +1,9 @@
 @extends('layouts.auth')
 @section('content')
+@php
+$publications = \App\Models\Publication::whereStatus('1')->pluck('publication', 'id');
+
+@endphp
 <section class="authentication-sec login-sec">
 	<div class="authentication-left-column position-relative">
         <div class="auth-banner-img position-relative">
@@ -52,6 +56,15 @@
 					{!! Form::select('role', ['studio'=>'Studio', 'reporter'=>'Reporter', 'streamer'=>'Streamer'], null, ['class' => ($errors->has('role') ? ' is-invalid' : '')]) !!}
 					{!! $errors->first('role', '<span class="help-block">:message</span>') !!}
 				</div>
+
+				<div class="form-grouph publication select-design mb-15{!! ($errors->has('publication_id') ? ' has-error' : '') !!}" style="display:none">
+					{!! Form::label('publication_id','Select Publication', ['class' => 'form-label']) !!}
+					{!! Form::select('publication_id', $publications, null, ['class' => ($errors->has('publication_id') ? ' is-invalid' : '')]) !!}
+					{!! $errors->first('publication_id', '<span class="help-block">:message</span>') !!}
+				</div>
+
+
+
 				
 				<div class="form-grouph submit-design">
 					<button class="submit-btn" type="submit">{{__ ('Sign Up') }}</button>
@@ -71,4 +84,21 @@
 		</div>
 	</div>
 </section>
+@endsection
+
+@section('script')
+<script>
+	$('select[name=role]').on('change', function(){
+		let val = $(this).val();
+
+		$('.publication').hide();
+		$('select[name=publication_id]').removeAttr('requried');
+
+		if(val != 'studio'){
+			$('.publication').show();
+			$('select[name=publication_id]').attr('requried');
+		}
+
+	})
+</script>
 @endsection

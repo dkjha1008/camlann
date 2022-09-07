@@ -3,7 +3,8 @@
 namespace App\Actions\Fortify;
 
 use App\Models\User;
-use App\Models\UserDetails;
+use App\Models\Publication;
+
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
@@ -45,6 +46,14 @@ class CreateNewUser implements CreatesNewUsers
         $user->password = Hash::make($input['password']);
         $user->save();
 
+
+        if($input['role'] != 'studio' && $input['publication_id']){
+
+            $store = new Publication;
+            $store->users_id = $user->id;
+            $store->publication_id = $input['publication_id'];
+            $store->save();
+        }
         
         return $user;
     }

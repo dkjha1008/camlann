@@ -53,7 +53,7 @@ class GamesController extends Controller
             'tags' => 'required',
             'comps' => 'required',
             //'screenshots' => 'required',
-            'youtube' => 'required',
+            //'youtube' => 'required',
         ]);
 		
 		$user = auth()->user();
@@ -92,7 +92,7 @@ class GamesController extends Controller
 	
 		
 		$store->comps = $request->comps;
-		$store->youtube = $request->youtube;
+		$store->youtube = json_encode($request->youtube);
 		
 		if ($request->hasFile('attach_files')){
 			$path = 'uploads/files/';
@@ -190,7 +190,7 @@ class GamesController extends Controller
             'tags' => 'required',
             'comps' => 'required',
             //'screenshots' => 'required',
-            'youtube' => 'required',
+            //'youtube' => 'required',
         ]);
 		
 		$user = auth()->user();
@@ -228,7 +228,7 @@ class GamesController extends Controller
 	
 		
 		$game->comps = $request->comps;
-		$game->youtube = $request->youtube;
+		$game->youtube = json_encode($request->youtube);
 		
 		if ($request->hasFile('attach_files')){
 			$path = 'uploads/files/';
