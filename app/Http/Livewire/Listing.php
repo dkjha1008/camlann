@@ -9,7 +9,7 @@ use App\Models\Tag;
 
 class Listing extends Component
 {
-	public $type=='studio', $keyword, $tag;
+	public $type='studio', $keyword, $tag;
 	public $tags, $searchData = [];
 	
 	public function mount()

@@ -129,6 +129,13 @@ class NewsController extends Controller
 		
         return view('studio.news.edit', compact('user', 'title', 'tags', 'news'));
     }
+
+     public function view($news){
+
+
+    	$new = News::where('id', '=' , $news)->first();
+    	return view('studio.news.view', compact('new'));
+    }
 	
 	public function update(Request $request, News $news)
     {

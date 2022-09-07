@@ -103,4 +103,13 @@ class ProfileController extends Controller
 		$this->flash('success', 'Password changed successfully');
         return redirect()->back();
 	}
+
+
+
+	public function view($id){
+         
+         $profile = User::with('userStudio')->where('id', '=', $id)->first();
+
+         return view('livewire.studio.view', compact('profile'));
+	}
 }
