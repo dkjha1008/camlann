@@ -51,6 +51,20 @@
 
 <div class="form-grouph multiple-img-upload mb-15">
 	<label>Screenshots of game upload</label>
+
+
+	@if(@$game && $game->screenshots)
+	<div class="row">
+	@foreach(json_decode($game->screenshots) as $im => $image)
+	<div class="col-md-2 screen-{{$im}}">
+		<img src="{{ asset('storage/screenshorts/'.$image) }}">
+		<input type="hidden" name="screenshots[]" value="{{ $image }}">
+		<button class="btn btn-sm btn-danger" onclick="removeImg({{$im}})">Delete</button>
+	</div>
+	@endforeach
+	</div>
+	@endif
+
 	<div class="needsclick dropzone" id="document-dropzone"></div>
 	
 	{{--
@@ -191,29 +205,7 @@
 			$('form').find('input[name="screenshots[]"][value="' + name + '"]').remove()
 		},
 		init: function () {
-			@if(isset($game) && $game->full_screenshort)
-			var files = {!! json_encode($game->full_screenshort) !!}
-			//console.log('files', files)
-
-
-			for (var i in files) {
 			
-				var file = files[i]
-				//console.log(file)
-
-				this.options.addedfile.call(this, file)
-				//file.previewElement.classList.add('dz-complete')
-				
-				//$('form').append('<input type="hidden" name="screenshots[]" value="' + file + '">')
-
-
-				/*console.log(this.options.addedfile.call(this, file))
-				
-				this.options.addedfile.call(this, file)
-				file.previewElement.classList.add('dz-complete')
-				$('form').append('<input type="hidden" name="screenshots[]" value="' + file + '">')*/
-			}
-			@endif
 		}
 	}
 
@@ -234,6 +226,11 @@
 	//remove layout
 	function removeLayout(key){
 		jQuery('.layout-'+key).remove();
+	}
+
+
+	function removeImg(key){
+		jQuery('.screen-'+key).remove();
 	}
 
 
