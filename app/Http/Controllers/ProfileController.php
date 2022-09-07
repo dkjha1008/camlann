@@ -108,8 +108,8 @@ class ProfileController extends Controller
 
 	public function view($id){
          
-         $profile = User::with('userStudio')->where('id', '=', $id)->first();
+		$profile = User::findOrFail($id);
 
-         return view('livewire.studio.view', compact('profile'));
+		return view('studio.profile.view', compact('profile'));
 	}
 }

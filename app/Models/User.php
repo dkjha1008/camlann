@@ -100,5 +100,10 @@ class User extends Authenticatable
         return $this->hasMany(Game::class, 'users_id', 'id');
     }
 
+    public function favourite()
+    {
+        return $this->hasMany(Favourite::class, 'user_id', 'id');
+    }
+
 
 }

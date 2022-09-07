@@ -6,11 +6,16 @@ use Livewire\Component;
 use App\Models\User;
 use App\Models\Game;
 use App\Models\Tag;
+use App\Models\Favourite;
+use App\Models\Contact;
 
 class Listing extends Component
 {
 	public $type='studio', $keyword, $tag;
-	public $tags, $searchData = [];
+	public $tags, $searchData = [], $favourites;
+	
+	public $selectUser;
+	public $message;
 	
 	public function mount()
     {
@@ -66,9 +71,63 @@ class Listing extends Component
 		
 		$this->searchData = $data;
     }
+
+
+    public function favourite($user){
+
+    	$store = new Favourite;
+    	$store->user_id = $this->user->id;
+    	$store->fav_users_id = $user;
+    	$store->save();
+
+    	$this->alert('success', 'Favourite added');
+    }
+
+    public function unfavourite($user){
+
+    	$fav = Favourite::where('user_id', $this->user->id)->where('fav_users_id', $user)->first();
+    	
+    	if(@$fav){
+	    	$fav->delete();
+	    	$this->alert('success', 'Un-favourite done');
+    	}
+    	else {
+    		$this->alert('error', 'Invalid Request');
+    	}
+
+    }
+
+	//...
+    public function emptyField(){
+    	$this->selectUser = '';
+    	$this->message = '';
+    }
+
+    public function contactModal($selectUser){
+    	$this->emptyField();
+
+    	$this->selectUser = $selectUser;
+    	$this->emit('showModal');
+    }
+
+    public function sendMessage(){
+    	$contact = new Contact; 
+        $contact->user_id = $this->user->id; 
+        $contact->reciever_id = $this->selectUser; 
+        $contact->message = $this->message; 
+        $contact->save(); 
+
+        //Mail::to($request->email)->send(new ContactMail($name, $contact));
+
+        $this->emptyField();
+    	$this->emit('closeModal');
+    	$this->alert('success', 'Message Send');
+    }
+
 	
     public function render()
     {
+    	$this->favourites = $this->user->favourite()->pluck('fav_users_id')->toArray();
         return view('livewire.listing');
     }
 }

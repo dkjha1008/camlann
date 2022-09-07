@@ -9,7 +9,6 @@
 						<option value="">Select Type</option>
 						<option value="studio">Studio</option>
 						<option value="game">Game</option>
-						@endforeach
 					</select>
 				</div>
 			</div>
@@ -44,48 +43,25 @@
 		
 		@if($type=='studio')
 		@foreach($searchData as $user)
-		<div class="card col-md-3">
+		<div class="card col-md-3" >
 			<img class="card-img-top" src="{{ $user->profile_pic }}" alt="Card image cap">
 			<div class="card-body">
 				<h5 class="card-title">{{ $user->name }}</h5>
 				<p class="card-text">{{ $user->email }}</p>
 				<div class="card-btn">
-					<a class="view-btn" href="#">View</a>
-					
-					{{--
-					<!-- Button trigger modal -->
-					<button type="button" class=" view-btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
+
+					@if(in_array($user->id, $favourites))
+					<a class="view-btn toggle-class-remove" href="javascript:void(0)" wire:click="unfavourite({{$user->id}})">Unfavourite</a>
+					@else
+					<a class="view-btn toggle-class" href="javascript:void(0)" wire:click="favourite({{$user->id}})">Favourite</a>
+					@endif
+
+					<a target="_blank" class="view-btn" href="{{ route('user.view', $user->id) }}">View</a>
+			
+					<button type="button" class="view-btn" wire:click="contactModal({{$user->id}})">
 						Contact
 					</button>
-
-					<!-- Modal -->
-					<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-						<div class="modal-dialog">
-							<div class="modal-content">
-								<div class="modal-header">
-									<h5 class="modal-title" id="exampleModalLabel">Contact</h5>
-									<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-								</div>
-								<div class="modal-body">
-									<form class="modal-form">
-										<label>Name</label>
-										<input></input>
-										<label>Last name</label>
-										<input></input>
-										<label>Phone</label>
-										<input>Email</input>
-										<label></label>
-										<textarea></textarea>
-									</form>
-								</div>
-								<div class="modal-footer">
-									<button type="button" class="btn btn-secondary view-btn" data-bs-dismiss="modal">Close</button>
-									<button type="button" class="btn btn-primary view-btn">Save changes</button>
-								</div>
-							</div>
-						</div>
-					</div>
-					--}}
+					
 				</div>
 			</div>
 		</div>
@@ -108,11 +84,56 @@
 		@endforeach
 		@endif
 		
-		
-		
-		
-		
+	</div>
+
+
+
+	<!-- Accept Modal Start Here-->
+    <div wire:ignore.self class="modal fade" id="contactForm" tabindex="-1" aria-labelledby="contactForm" aria-hidden="true">
+        <div class="modal-dialog modal_style">
+            <button type="button" class="btn btn-default close closeModal">
+                <i class="fas fa-close"></i>
+			</button>
+            <div class="modal-content">
+                <form>
+                    <div class="modal-header">
+                        <h3>Contact</h3>
+					</div>
+                    <div class="modal-body">
+                        <div>
+                            <div class="form-grouph input-design mb-15">
+                                <label>Message</label>
+                                <textarea wire:model="message" class="form-control"></textarea>
+                                {!! $errors->first('message', '<span class="help-block">:message</span>') !!}
+							</div>
+						</div>
+					</div>
+                    <div class="text-center mb-3">
+                        <button type="button" class="btn btn-success" wire:click="sendMessage" wire:loading.attr="disabled">
+                            <i wire:loading wire:target="sendMessage" class="fas fa-spin fa-spinner"></i> Send
+						</button>
+					</div>
+				</form>
+				
+			</div>
 		</div>
+	</div>
+
+	@push('scripts')
+    <script>
+        $(document).ready(function () {
+			window.livewire.on('showModal', () => {
+                $('#contactForm').modal('show');
+			});
+            window.livewire.on('closeModal', () => {
+                $('#contactForm').modal('hide');
+			});
+		});
+        $(document).on('click', '.closeModal', function(e) {
+            $('#contactForm').modal('hide');
+		});
+	</script>
+    @endpush
 	
 	
 </div>
