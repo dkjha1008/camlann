@@ -41,6 +41,7 @@ class Game extends Model
 		}
 		return '';
     }
+
 	
 	
 	public function getFullAttachFilesAttribute(){
