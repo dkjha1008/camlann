@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DropzoneController;
 use App\Http\Controllers\PagesController;
+use App\Http\Controllers\FavouriteController;
+use App\Http\Controllers\ContactController;
 
 //...folders
 use App\Http\Controllers\Admin;
@@ -43,6 +45,13 @@ Route::get('/storage-link', function () {
     Artisan::call('storage:link');
     return "storage:link";
 });
+
+
+Route::post('/studio/addfavourite', [FavouriteController::class, 'addfavourite'])->name('addfavourite');
+Route::post('/studio/removefavourite', [FavouriteController::class, 'removefavourite'])->name('removefavourite');
+Route::post('/studio/contact-message', [ContactController::class, 'message'])->name('contact-message');
+Route::get('/studio/user-view/{id}', [ProfileController::class, 'view'])->name('user-view');
+
 
 
 
@@ -127,6 +136,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 				Route::get('/create', 'create')->name('studio.games.create');
 				Route::post('/create/store', 'store')->name('studio.games.store');
 				Route::get('/{game}/edit', 'edit')->name('studio.games.edit');
+				Route::get('/{game}/view', 'view')->name('studio.games.view');
 				Route::patch('/{game}/update', 'update')->name('studio.games.update');
 				Route::delete('/{game}/destroy', 'destroy')->name('studio.games.destroy');
 			});
@@ -139,6 +149,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 				Route::get('/create', 'create')->name('studio.news.create');
 				Route::post('/create/store', 'store')->name('studio.news.store');
 				Route::get('/{news}/edit', 'edit')->name('studio.news.edit');
+				Route::get('/{news}/view', 'view')->name('studio.news.view');
 				Route::patch('/{news}/update', 'update')->name('studio.news.update');
 				Route::delete('/{news}/destroy', 'destroy')->name('studio.news.destroy');
 			});

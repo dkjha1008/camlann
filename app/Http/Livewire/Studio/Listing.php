@@ -6,6 +6,7 @@ use Livewire\Component;
 use App\Models\User;
 use App\Models\Tag;
 use App\Models\Publication;
+use App\Models\Favourite;
 
 class Listing extends Component
 {
@@ -24,6 +25,8 @@ class Listing extends Component
 		
 		$this->tags = Tag::whereStatus('1')->get();
 		$this->publications = Publication::whereStatus('1')->get();
+		$this->favourites = Favourite::where('user_id', '=', auth()->user()->id)->get();
+
 		
 		//init search
 		$this->search();

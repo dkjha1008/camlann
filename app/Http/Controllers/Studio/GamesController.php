@@ -180,6 +180,21 @@ class GamesController extends Controller
 		
         return view('studio.games.edit', compact('user', 'title', 'tags', 'game'));
     }
+
+    public function view($game){
+
+
+    	$game = Game::where('id', '=' , $game)->first();
+
+    	// echo "<pre>";
+    	// $aa = str_replace('',"gel", $game->screenshots);
+    	// print_r($aa);
+
+    	// $a = explode(',', $game->screenshots);
+    	// print_r($a);
+    	// die;
+    	return view('studio.games.view', compact('game'));
+    }
 	
 	
 	public function update(Request $request, Game $game)
