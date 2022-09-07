@@ -66,16 +66,35 @@
 	--}}
 </div>
 
-<div class="data-you">
-	<div class="form-grouph input-design mb-15{!! ($errors->has('youtube') ? ' has-error' : '') !!}">
-		{!! Form::label('youtube','Embedded Youtube video(s)', ['class' => 'form-label']) !!}
-		{!! Form::text('youtube', null, ['class' => ($errors->has('youtube') ? ' is-invalid' : '')]) !!}
+<div class="addNewLayout">
+	{!! Form::label('youtube','Embedded Youtube video(s)', ['class' => 'form-label']) !!}
+
+	@if(@$game->youtube_array)
+	@foreach($game->youtube_array as $i => $link)
+	<div class="layout layout-{{$i+1}}">
+		<div class="row">
+			<div class="col-md-10">
+				<div class="form-grouph input-design mb-15{!! ($errors->has('youtube') ? ' has-error' : '') !!}">
+					{!! Form::text('youtube[]', $link ?? null, ['class' => ($errors->has('youtube') ? ' is-invalid' : '')]) !!}
+					{!! $errors->first('youtube', '<span class="help-block">:message</span>') !!}
+				</div>
+			</div>
+			<div class="col-md-2">
+				<button type="button" class="btn btn-danger btn-icon pull-right removeLayout" onclick="removeLayout({{$i+1}})"><i class="fa fa-trash"></i></button>
+			</div>
+		</div>
+	</div>
+	@endforeach
+	@else
+	<div class="layout layout-1 form-grouph input-design mb-15{!! ($errors->has('youtube') ? ' has-error' : '') !!}">
+		{!! Form::text('youtube[]', null, ['class' => ($errors->has('youtube') ? ' is-invalid' : '')]) !!}
 		{!! $errors->first('youtube', '<span class="help-block">:message</span>') !!}
 	</div>
+	@endif
 </div>
 
 <div class="add-more mb-15">
-	<button class="add-more-btn"><span class="add-span"><i class="fa-solid fa-plus"></i></span> Add More</button>
+	<button type="button" class="add-more-btn" onclick="addNew()"><span class="add-span"><i class="fa-solid fa-plus"></i></span> Add More</button>
 </div>
 
 <div class="form-grouph file-upload-design mb-15">
@@ -120,6 +139,28 @@
 
 
 @section('script')
+
+
+<div id="addNew" style="display: none">
+	<div>
+		<div class="layout layout-0key0">
+			<div class="row">
+				<div class="col-md-10">
+					<div class="form-grouph input-design mb-15{!! ($errors->has('youtube') ? ' has-error' : '') !!}">
+						<input name="youtube[]" type="text" value="">
+					</div>
+				</div>
+
+
+				<div class="col-md-2">
+					<button type="button" class="btn btn-danger btn-icon pull-right removeLayout" onclick="removeLayout(0key0)"><i class="fa fa-trash"></i></button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
 @include('includes.croppie')
 <link href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.css" rel="stylesheet" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.js"></script>
@@ -150,32 +191,51 @@
 			$('form').find('input[name="screenshots[]"][value="' + name + '"]').remove()
 		},
 		init: function () {
-			let file;
 			@if(isset($game) && $game->full_screenshort)
-				@foreach($game->full_screenshort as $screenshort)
-				
-				file = "{{$screenshort}}";
-				
-				this.options.addedfile.call(this, file)
-				file.previewElement.classList.add('dz-complete')
-				$('form').append('<input type="hidden" name="screenshots[]" value="' + file + '">')
-				
-				@endforeach
-			
-			
-			
-			/* var files = {!! $game->screenshots !!}
+			var files = {!! json_encode($game->full_screenshort) !!}
+			//console.log('files', files)
+
+
 			for (var i in files) {
 			
 				var file = files[i]
-				console.log(file)
-				console.log(this.options.addedfile.call(this, file))
+				//console.log(file)
+
+				this.options.addedfile.call(this, file)
+				//file.previewElement.classList.add('dz-complete')
+				
+				//$('form').append('<input type="hidden" name="screenshots[]" value="' + file + '">')
+
+
+				/*console.log(this.options.addedfile.call(this, file))
+				
 				this.options.addedfile.call(this, file)
 				file.previewElement.classList.add('dz-complete')
-				$('form').append('<input type="hidden" name="screenshots[]" value="' + file + '">')
-			} */
+				$('form').append('<input type="hidden" name="screenshots[]" value="' + file + '">')*/
+			}
 			@endif
 		}
 	}
+
+
+
+	//add new layout
+	function addNew(){
+		var rowCount = $('.addNewLayout .layout').length;
+		rowCount = rowCount + 1;
+
+		var new_cf = $('#addNew').clone();
+		var html = $(new_cf).html().replace(/0key0/g, rowCount);
+		
+		$('.addNewLayout').append(html);
+	}		
+	
+	
+	//remove layout
+	function removeLayout(key){
+		jQuery('.layout-'+key).remove();
+	}
+
+
 </script>
 @endsection

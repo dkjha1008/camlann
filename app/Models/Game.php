@@ -10,8 +10,15 @@ class Game extends Model
     use HasFactory;
 	
 	protected $appends = [
-        'full_image', 'full_screenshort', 'full_attach_files', 'full_exe'
+        'youtube_array', 'full_image', 'full_screenshort', 'full_attach_files', 'full_exe'
     ];
+
+    public function getYoutubeArrayAttribute(){
+		if(@$this->youtube){
+			return json_decode($this->youtube);
+		}
+		return [];
+    }
 
     public function getFullImageAttribute(){
 		if(@$this->image){
