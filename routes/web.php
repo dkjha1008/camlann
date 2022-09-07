@@ -47,10 +47,9 @@ Route::get('/storage-link', function () {
 });
 
 
-Route::post('/studio/addfavourite', [FavouriteController::class, 'addfavourite'])->name('addfavourite');
-Route::post('/studio/removefavourite', [FavouriteController::class, 'removefavourite'])->name('removefavourite');
+
 Route::post('/studio/contact-message', [ContactController::class, 'message'])->name('contact-message');
-Route::get('/studio/user-view/{id}', [ProfileController::class, 'view'])->name('user-view');
+Route::get('/user-view/{id}', [ProfileController::class, 'view'])->name('user.view');
 
 
 
