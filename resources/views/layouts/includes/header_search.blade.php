@@ -1,12 +1,12 @@
 @if(auth()->user()->role=='studio' && !request()->routeIs('studio.listing'))
 <form action="{{ route('studio.listing') }}" class="form-design">
 	<div class="row">
-		<div class="col-md-3">
+		<div class="col-md-4">
 			<div class="form-grouph select-design">
 				{!! Form::select('user_type', ['reporter'=>'Reporter', 'streamer'=>'Streamer'], null, ['placeholder'=>'Select User Type', 'required']) !!}
 			</div>
 		</div>
-		<div class="col-md-3">
+		<div class="col-md-4">
 			<div class="form-grouph input-design">
 				{!! Form::text('keyword', null, ['placeholder'=>'Search keyword']) !!}
 			</div>

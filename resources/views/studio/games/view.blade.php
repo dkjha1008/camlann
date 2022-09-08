@@ -47,7 +47,7 @@
     </div>
     <div class="slider game-ss-slider">
       <div>
-      	 <img src="{{url('/storage/games/'.$game->screenshots)}}" width="180" height="385">
+      	 <img src="{{url('/storage/games/'.$game->screenshots)}}"  >
      
     
       </div>
