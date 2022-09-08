@@ -13,13 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('news_tags', function (Blueprint $table) {
-			$table->engine = 'InnoDB';
+        Schema::create('news_games', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
             $table->id();
-			
+            
             $table->foreignId('news_id')->references('id')->on('news')->onDelete('cascade');
-            $table->foreignId('tags_id')->references('id')->on('tags')->onDelete('cascade');
-			
+            $table->foreignId('games_id')->references('id')->on('games')->onDelete('cascade');
+
             $table->timestamps();
         });
     }
@@ -31,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('news_tags');
+        Schema::dropIfExists('news_games');
     }
 };

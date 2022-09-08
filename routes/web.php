@@ -71,9 +71,18 @@ Route::middleware(['auth', 'verified'])->group(function () {
 	//files upload
 	
 	Route::post('/dropzone', [DropzoneController::class, 'index'])->name('dropzone');
-	
-	
-	
+
+	//contact
+	//...publication
+	Route::prefix('contact')->group(function () {
+		Route::controller(ContactController::class)->group(function () {
+			Route::get('/', 'index')->name('contact.index');
+			Route::get('/{user}', 'show')->name('contact.show');
+			Route::post('/{user}/store', 'store')->name('contact.store');
+		});
+	});
+
+
 	
 	
 	Route::prefix('profile')->group(function () {

@@ -35,19 +35,11 @@ $userTags = $user->tags->pluck('tags_id');
 			{!! Form::textarea('description', null, ['class' => ($errors->has('description') ? ' is-invalid' : '')]) !!}
 			{!! $errors->first('description', '<span class="help-block">:message</span>') !!}
 		</div>
-		
-		<div class="form-flex two-column mb-15">
-			<div class="form-grouph select-custom-design{!! ($errors->has('games') ? ' has-error' : '') !!}">
-				{!! Form::label('games','List of Games', ['class' => 'form-label']) !!}
-				{!! Form::select('games[]', $games, null, ['class' => 'select-tags'.($errors->has('games') ? ' is-invalid' : ''), 'multiple']) !!}
-				{!! $errors->first('games', '<span class="help-block">:message</span>') !!}
-			</div>
-		
-			<div class="form-grouph select-custom-design{!! ($errors->has('tags') ? ' has-error' : '') !!}">
-				{!! Form::label('tags','Game Tags', ['class' => 'form-label']) !!}
-				{!! Form::select('tags[]', $tags, $userTags ?? null, ['class' => 'select-tags'.($errors->has('tags') ? ' is-invalid' : ''), 'multiple']) !!}
-				{!! $errors->first('tags', '<span class="help-block">:message</span>') !!}
-			</div>
+				
+		<div class="form-grouph select-custom-design{!! ($errors->has('tags') ? ' has-error' : '') !!}">
+			{!! Form::label('tags','Game Tags', ['class' => 'form-label']) !!}
+			{!! Form::select('tags[]', $tags, $userTags ?? null, ['class' => 'select-tags'.($errors->has('tags') ? ' is-invalid' : ''), 'multiple']) !!}
+			{!! $errors->first('tags', '<span class="help-block">:message</span>') !!}
 		</div>
 		
 		<div class="form-grouph submit-design text-center mt-5">

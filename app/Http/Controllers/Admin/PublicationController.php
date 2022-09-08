@@ -4,12 +4,15 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Jantinnerezo\LivewireAlert\LivewireAlert;
 use App\Models\User;
 use App\Models\Publication;
 use App\Models\PublicationReporter;
 
 class PublicationController extends Controller
 {
+    use LivewireAlert;
+
     //
     public function index()
     {
@@ -107,8 +110,7 @@ class PublicationController extends Controller
             }
         }
 		
-		
-		//Session::flash('success', 'Profile updated successfully');
+		$this->flash('success', 'Publication created successfully');
         return redirect()->route('admin.publication');
     }
 	
@@ -198,7 +200,7 @@ class PublicationController extends Controller
         }
 		
 		
-		//Session::flash('success', 'Profile updated successfully');
+        $this->flash('success', 'Publication updated successfully');
         return redirect()->route('admin.publication');
     }
 	
