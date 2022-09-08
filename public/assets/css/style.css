@@ -860,6 +860,14 @@ table {
     font-size: 14px;
     color: var(--lightblack);
 }
+.left-section {
+    padding: 30px;
+}
+.mail a, .phone1 {
+    margin-left: 9px;
+    color: gray;
+    text-decoration: none;
+}
 .table-layout-header {
     margin-bottom: 20px;
 }
@@ -906,7 +914,7 @@ table {
 }
 .banner-section--view {
     margin-top: 98px;
-    padding: 16% 0;
+    padding: 10% 0;
     background-size: cover;
     background-repeat: no-repeat;
 }
@@ -918,8 +926,8 @@ table {
     font-weight: 500;
 }
 .tags-comps-data {
-    background: transparent;
-    margin-top: -110px;
+        background: #f7f7f7; 
+        padding-bottom: 110px;
 }
 .container-1205px{
     width: 100%;
@@ -931,7 +939,6 @@ table {
 .tags-white-wrapper {
     background-color: #fff;
     box-shadow: 0px 4px 24px rgba(0, 0, 0, 0.05);
-    border-radius: 20px;
     padding: 40px;
 }
 .h4-design {
@@ -1076,17 +1083,17 @@ img.card-img-top {
     gap: 15px;
 }
 .view-btn:hover {
-    background: #231769;
+    fill: #231769;
     color: #fff;
 }
 .view-btn {
     color: #fff;
     text-decoration: none;
-    background:var(--pink);
+    background:transparent;
     border: none;
-    min-width: 82px;
+    min-width: 50px;
     text-align: center;
-    padding: 5px 9px;
+   
     border-radius: 5px;
 }
 .modal-form input, textarea {
@@ -1105,11 +1112,92 @@ p.nodata {
 }
 .header-wrapper {
     display: flex;
-    justify-content: space-between;
+    justify-content: end;
     align-items: center;
 }
 form.form-design {
     width: 100%;
+}
+.badge {
+    border: none;
+    padding: 6px 10px;
+}
+
+element.style {
+}
+.badge {
+    border: none;
+    padding: 6px 10px;
+}
+button.badge.badge-danger {
+    background: red;
+}
+.badge-success {
+    background: green;
+}
+.profile-img-wrappr img {
+    position: absolute;
+    width: 200px;
+    height: auto;
+    top: -106px;
+    border: 8px solid #fff;
+    border-radius: 50%;
+    background-color: #fff;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.profile-img-wrappr {
+    position: relative;
+}
+h2.user-name {
+    color: #000;
+    font-size: 40px;
+}
+a.profile-links {
+    color: #000;
+    text-decoration: none;
+}
+.row.profile-bottom {
+    margin-top: 50px;
+}
+.right-section iframe {
+    border-radius: 15px;
+}
+.bottom-com {
+    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
+    min-height: 315px;
+    border-radius: 10px;
+    background: #f7f7f7;
+    padding: 28px;
+}
+.chat-btn svg, .chat-btn {
+    margin-right: 5px;
+    text-decoration: none !important;
+    cursor: pointer;
+    font-size: 15px;
+}
+.bottom-com h4 {
+    font-size: 23px;
+    color: #000;
+}
+.chat-btn:hover {
+    color: #fff;  
+}
+.bottom-com p {
+    font-size: 14px;
+    font-weight: 400;
+    padding-right: 45px;
+    line-height: 20px;
+}
+.chat-btn {
+    padding: 10px 55px;
+}
+.mail {
+    margin-bottom: 31px;
+    margin-top: 10px;
+    
+}
+.rating {
+    margin-top: 35px;
 }
 @media (max-width: 991px){
     .authentication-sec>div {
