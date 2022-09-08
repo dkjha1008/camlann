@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Studio;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Jantinnerezo\LivewireAlert\LivewireAlert;
 
 use App\Models\{
     Tag,
@@ -13,6 +14,8 @@ use App\Models\{
 
 class StudioController extends Controller
 {
+    use LivewireAlert;
+
     //
     public function index()
     {
@@ -103,7 +106,7 @@ class StudioController extends Controller
         }
 		
 		
-		//Session::flash('success', 'Profile updated successfully');
+		$this->flash('success', 'Profile updated successfully');
         return redirect()->back();
     }
 }

@@ -29,16 +29,16 @@
 	</div>
 
 	@php
-		$selectedTags = [];
-		if(@$news && $news->newsTags){
-			$selectedTags = $news->newsTags->pluck('tags_id');
+		$selectedGames = [];
+		if(@$news && $news->newsGames){
+			$selectedGames = $news->newsGames->pluck('games_id');
 		}
 	@endphp
 	
-	<div class="form-grouph select-custom-design{!! ($errors->has('tags') ? ' has-error' : '') !!}">
-		{!! Form::label('tags','Game Tags', ['class' => 'form-label']) !!}
-		{!! Form::select('tags[]', $tags, $selectedTags ?? null, ['class' => 'select-tags'.($errors->has('tags') ? ' is-invalid' : ''), 'multiple']) !!}
-		{!! $errors->first('tags', '<span class="help-block">:message</span>') !!}
+	<div class="form-grouph select-custom-design{!! ($errors->has('games') ? ' has-error' : '') !!}">
+		{!! Form::label('games','Games', ['class' => 'form-label']) !!}
+		{!! Form::select('games[]', $games, $selectedGames ?? null, ['class' => 'select-tags'.($errors->has('games') ? ' is-invalid' : ''), 'multiple']) !!}
+		{!! $errors->first('games', '<span class="help-block">:message</span>') !!}
 	</div>
 </div>
 

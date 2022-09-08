@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Studio;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Str;
 
 use App\Models\{
@@ -15,6 +16,8 @@ use App\Models\{
 
 class GamesController extends Controller
 {
+	use LivewireAlert;
+	
     //
     public function index()
     {
@@ -161,9 +164,7 @@ class GamesController extends Controller
         }
 		
 		
-		//$store->tags = $request->tags;
-		
-		//Session::flash('success', 'Profile updated successfully');
+		$this->flash('success', 'Game created successfully');
         return redirect()->route('studio.games');
     }
 	
@@ -312,9 +313,7 @@ class GamesController extends Controller
         }
 		
 		
-		//$store->tags = $request->tags;
-		
-		//Session::flash('success', 'Profile updated successfully');
+		$this->flash('success', 'Game updated successfully');
         return redirect()->route('studio.games');
     }
 }

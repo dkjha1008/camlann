@@ -3,6 +3,10 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
+use Illuminate\Support\Facades\Notification;
+use App\Notifications\ContactNotification;
+use Jantinnerezo\LivewireAlert\LivewireAlert;
+
 use App\Models\User;
 use App\Models\Game;
 use App\Models\Tag;
@@ -11,6 +15,9 @@ use App\Models\Contact;
 
 class Listing extends Component
 {
+	use LivewireAlert;
+
+	public $user;
 	public $type='studio', $keyword, $tag;
 	public $tags, $searchData = [], $favourites;
 	
@@ -19,6 +26,7 @@ class Listing extends Component
 	
 	public function mount()
     {
+    	$this->user = auth()->user();
 		
 		if(request()->keyword){
 			$this->keyword = request()->keyword;
@@ -117,7 +125,14 @@ class Listing extends Component
         $contact->message = $this->message; 
         $contact->save(); 
 
-        //Mail::to($request->email)->send(new ContactMail($name, $contact));
+        
+        try{
+			$userData = User::find($this->selectUser);
+			// dd($userData);
+			Notification::route('mail', $userData->email)
+				->notify(new ContactNotification($userData, $this->user, $this->message));
+		} catch(Exception $e) { }
+
 
         $this->emptyField();
     	$this->emit('closeModal');

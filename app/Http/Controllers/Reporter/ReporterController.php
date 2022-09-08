@@ -4,12 +4,15 @@ namespace App\Http\Controllers\Reporter;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Jantinnerezo\LivewireAlert\LivewireAlert;
 use App\Models\Tag;
 use App\Models\UserReporter;
 use App\Models\UserTags;
 
 class ReporterController extends Controller
 {
+	use LivewireAlert;
+	
     //
     public function index()
     {
@@ -77,7 +80,7 @@ class ReporterController extends Controller
         }
 		
 		
-		//Session::flash('success', 'Profile updated successfully');
+		$this->flash('success', 'Profile updated successfully');
         return redirect()->back();
     }
 }

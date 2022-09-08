@@ -21,9 +21,9 @@ class News extends Model
     }
 	
 	
-	public function newsTags()
+	public function newsGames()
     {
-        return $this->hasMany(NewsTags::class, 'news_id', 'id');
+        return $this->hasMany(NewsGames::class, 'news_id', 'id');
     }
 	
 }

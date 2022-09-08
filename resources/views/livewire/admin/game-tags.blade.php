@@ -66,6 +66,7 @@
                                 <input type="text" wire:model="name" class="form-control">
                                 {!! $errors->first('name', '<span class="help-block">:message</span>') !!}
 							</div>
+
                             <div class="form-grouph input-design mb-15">
                                 <label>Status</label></br>
                                 <input type="radio" name="status" wire:model="status" value="1"> Active
