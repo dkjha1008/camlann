@@ -1,6 +1,6 @@
 <div class="form-grouph input-design mb-15{!! ($errors->has('title') ? ' has-error' : '') !!}">
 	{!! Form::label('title','Title of game', ['class' => 'form-label']) !!}
-	{!! Form::text('title', null, ['class' => ($errors->has('title') ? ' is-invalid' : '')]) !!}
+	{!! Form::text('title', null, ['class' => ($errors->has('title') ? ' is-invalid' : ''), 'required']) !!}
 	{!! $errors->first('title', '<span class="help-block">:message</span>') !!}
 </div>
 
@@ -9,7 +9,7 @@
 	<div class="avatar-upload">
 		<div class="avatar-edit">
 			<input type='file' id="imageUpload" accept=".png, .jpg, .jpeg" />
-			<input type="hidden" name="image" id="upload-img" />
+			<input type="hidden" name="image" id="upload-img" {{ @$game->full_image ? '' : 'required' }}/>
 			<label for="imageUpload"></label>
 		</div>
 		<div class="avatar-preview">
@@ -35,19 +35,14 @@
 		$gameTags = $game->gameTags->pluck('tags_id');
 	}
 @endphp
-<div class="form-flex two-column mb-15">
-	<div class="form-grouph select-custom-design{!! ($errors->has('tags') ? ' has-error' : '') !!}">
-		{!! Form::label('tags','Game Tags', ['class' => 'form-label']) !!}
-		{!! Form::select('tags[]', $tags, $gameTags ?? null, ['class' => 'select-tags'.($errors->has('tags') ? ' is-invalid' : ''), 'multiple']) !!}
-		{!! $errors->first('tags', '<span class="help-block">:message</span>') !!}
-	</div>
-	
-	<div class="form-grouph input-design{!! ($errors->has('comps') ? ' has-error' : '') !!}">
-		{!! Form::label('comps','Comps', ['class' => 'form-label']) !!}
-		{!! Form::text('comps', null, ['class' => ($errors->has('comps') ? ' is-invalid' : '')]) !!}
-		{!! $errors->first('comps', '<span class="help-block">:message</span>') !!}
-	</div>
+
+
+<div class="form-grouph select-custom-design{!! ($errors->has('tags') ? ' has-error' : '') !!}">
+	{!! Form::label('tags','Game Tags', ['class' => 'form-label']) !!}
+	{!! Form::select('tags[]', $tags, $gameTags ?? null, ['class' => 'select-tags'.($errors->has('tags') ? ' is-invalid' : ''), 'multiple', 'required']) !!}
+	{!! $errors->first('tags', '<span class="help-block">:message</span>') !!}
 </div>
+
 
 <div class="form-grouph multiple-img-upload mb-15">
 	<label>Screenshots of game upload</label>
@@ -147,7 +142,7 @@
 <div class="form-grouph radio-design mb-15{!! ($errors->has('status') ? ' has-error' : '') !!}">
 	{!! Form::label('status','Status', ['class' => 'form-label']) !!}
 	{!! Form::radio('status','1') !!} Active
-	{!! Form::radio('status','0') !!} De-active
+	{!! Form::radio('status','0') !!} Inactive
 	{!! $errors->first('status', '<span class="help-block">:message</span>') !!}
 </div>
 

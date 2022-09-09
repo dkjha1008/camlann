@@ -54,7 +54,6 @@ class GamesController extends Controller
             'title' => 'required|max:255',
             'image' => 'required',
             'tags' => 'required',
-            'comps' => 'required',
             //'screenshots' => 'required',
             //'youtube' => 'required',
         ]);
@@ -93,8 +92,6 @@ class GamesController extends Controller
 			$store->screenshots = json_encode($request->screenshots);
 		}
 	
-		
-		$store->comps = $request->comps;
 		$store->youtube = json_encode($request->youtube);
 		
 		if ($request->hasFile('attach_files')){
@@ -204,7 +201,6 @@ class GamesController extends Controller
             'title' => 'required|max:255',
             //'image' => 'required',
             'tags' => 'required',
-            'comps' => 'required',
             //'screenshots' => 'required',
             //'youtube' => 'required',
         ]);
@@ -243,7 +239,6 @@ class GamesController extends Controller
 		}
 	
 		
-		$game->comps = $request->comps;
 		$game->youtube = json_encode($request->youtube);
 		
 		if ($request->hasFile('attach_files')){

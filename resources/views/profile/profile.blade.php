@@ -22,6 +22,26 @@
 			{!! Form::email('email', null, ['class' => ($errors->has('email') ? ' is-invalid' : ''), 'disabled']) !!}
 			{!! $errors->first('email', '<span class="help-block">:message</span>') !!}
 		</div>
+
+
+
+		<div class="form-grouph img-upload-design">
+			<label>Photo/logo</label>
+			<div class="avatar-upload">
+				<div class="avatar-edit">
+					<input type='file' id="imageUpload" accept=".png, .jpg, .jpeg" />
+					<input type="hidden" name="image" id="upload-img" />
+					<label for="imageUpload"></label>
+				</div>
+				<div class="avatar-preview">
+					<div id="imagePreview">
+						<img src="{{ $user->profile_pic }}">
+					</div>
+				</div>
+			</div>
+			{!! $errors->first('image', '<span class="help-block">:message</span>') !!}
+		</div>
+
 		
         <div class="form-grouph submit-design text-center mt-5">
 			<button class="submit-short-btn" type="submit">{{__ ('Update') }}</button>
@@ -29,4 +49,8 @@
 		
 	{!! Form::close() !!}
 </div>
+@endsection
+
+@section('script')
+@include('includes.croppie')
 @endsection

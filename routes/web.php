@@ -7,6 +7,7 @@ use App\Http\Controllers\DropzoneController;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\FavouriteController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\DashboardController;
 
 //...folders
 use App\Http\Controllers\Admin;
@@ -51,7 +52,9 @@ Route::get('/storage-link', function () {
 Route::post('/studio/contact-message', [ContactController::class, 'message'])->name('contact-message');
 Route::get('/user-view/{id}', [ProfileController::class, 'view'])->name('user.view');
 
+Route::get('/game/{id}', [ProfileController::class, 'game'])->name('game.view');
 
+Route::get('/news/{news}', [Studio\NewsController::class, 'view'])->name('news.view');
 
 
 Route::get('/', function() {
@@ -71,6 +74,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
 	//files upload
 	
 	Route::post('/dropzone', [DropzoneController::class, 'index'])->name('dropzone');
+
+	Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
 	//contact
 	//...publication
@@ -157,7 +162,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
 				Route::get('/create', 'create')->name('studio.news.create');
 				Route::post('/create/store', 'store')->name('studio.news.store');
 				Route::get('/{news}/edit', 'edit')->name('studio.news.edit');
-				Route::get('/{news}/view', 'view')->name('studio.news.view');
 				Route::patch('/{news}/update', 'update')->name('studio.news.update');
 				Route::delete('/{news}/destroy', 'destroy')->name('studio.news.destroy');
 			});

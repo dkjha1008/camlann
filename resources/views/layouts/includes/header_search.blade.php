@@ -29,7 +29,7 @@
 		</div>
 		<div class="col-md-3">
 			<div class="form-grouph input-design">
-				{!! Form::text('keyword', null, ['placeholder'=>'Search keyword', 'required']) !!}
+				{!! Form::text('keyword', null, ['placeholder'=>'Search keyword']) !!}
 			</div>
 		</div>
 		<div class="col-md-2">
@@ -49,7 +49,7 @@
 		</div>
 		<div class="col-md-3">
 			<div class="form-grouph input-design">
-				{!! Form::text('keyword', null, ['placeholder'=>'Search keyword', 'required']) !!}
+				{!! Form::text('keyword', null, ['placeholder'=>'Search keyword']) !!}
 			</div>
 		</div>
 		<div class="col-md-2">
