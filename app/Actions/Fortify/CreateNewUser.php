@@ -3,7 +3,7 @@
 namespace App\Actions\Fortify;
 
 use App\Models\User;
-use App\Models\Publication;
+use App\Models\PublicationReporter;
 
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -49,7 +49,7 @@ class CreateNewUser implements CreatesNewUsers
 
         if($input['role'] != 'studio' && $input['publication_id']){
 
-            $store = new Publication;
+            $store = new PublicationReporter;
             $store->users_id = $user->id;
             $store->publication_id = $input['publication_id'];
             $store->save();

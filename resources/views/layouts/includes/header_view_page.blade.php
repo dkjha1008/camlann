@@ -4,10 +4,14 @@
       <li>
         <a href="https://camlanngames.com/"><img src="/assets/images/dark-logo.png"></a>
       </li>
+      {{--
       <li class="m-hide"><a href="#">Favorite</a></li>
       <li class="m-hide"><a href="#">Contact</a></li>
+      --}}
     </ul>
     <ul class="list-unstyled">
+      
+      {{--
       <li class="nav-item navigation-icon">
         <div class="dropdown">
           <button type="button" class="btn-notifaction dropdown-toggle position-relative" data-bs-toggle="dropdown">
@@ -23,7 +27,20 @@
           </ul>
         </div>
       </li>
+      --}}
+
+
       <li class="nav-item dashboard-icon">
+        @guest
+          <div class="dropdown">
+            <a href="{{ route('register') }}" class="btn-dashboard">
+              Login
+            </a>
+            <a href="{{ route('register') }}" class="btn-dashboard">
+              Register
+            </a>
+          </div>
+        @else
         <div class="dropdown">
           <button type="button" class="btn-dashboard dropdown-toggle position-relative" data-bs-toggle="dropdown">
             <span class="avtar-img"><img src="{{ $user->profile_pic}}"></span>
@@ -42,7 +59,13 @@
             
           </ul>
         </div>
+        @endguest
+
+
       </li>
+
+
+
     </ul>
   </div>
 </header>
