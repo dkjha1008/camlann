@@ -17,9 +17,17 @@ $user = auth()->user();
 			
 			@yield('content')
 			
+
+
+			<footer id="footer-main">
+			     <div class="container-1205px">
+			        <div class="copyright-text">
+			            <p>All right Reserved CAMLANN © {{date('Y')}}.</p>
+			        </div>
+			     </div>
+			</footer>
+
 		</div>
-		
-		<!-- @include('layouts.includes.sidebar', ['user'=>$user]) -->
 		
 		@include('layouts.includes.scripts')
 	

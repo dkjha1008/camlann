@@ -1,14 +1,5 @@
 @extends('layouts.auth')
 @section('content')
-<strong>Database Connected: </strong>
-<?php
-    try {
-        \DB::connection()->getPDO();
-        echo \DB::connection()->getDatabaseName();
-        } catch (\Exception $e) {
-        echo 'None';
-    }
-?>
 <section class="authentication-sec login-sec">
 	<div class="authentication-left-column position-relative">
 		<div class="auth-banner-img position-relative">
