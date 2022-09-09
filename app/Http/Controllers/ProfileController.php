@@ -39,7 +39,7 @@ class ProfileController extends Controller
         if($request->image && strpos($request->image, "data:") !== false) {
 			$image = $request->image;
 			
-            $folderPath = ('storage/logo/');
+            $folderPath = ('storage/images/');
             if (!is_dir($folderPath)) {
                 mkdir($folderPath, 0775, true);
                 chown($folderPath, exec('whoami'));

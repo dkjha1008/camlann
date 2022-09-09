@@ -50,17 +50,7 @@
 				<p class="card-text">{{ $user->email }}</p>
 				<div class="card-btn">
 
-					@if(in_array($user->id, $favourites))
-					<a class="view-btn toggle-class-remove" href="javascript:void(0)" wire:click="unfavourite({{$user->id}})">Unfavourite</a>
-					@else
-					<a class="view-btn toggle-class" href="javascript:void(0)" wire:click="favourite({{$user->id}})">Favourite</a>
-					@endif
-
-					<a target="_blank" class="view-btn" href="{{ route('user.view', $user->id) }}">View</a>
-			
-					<button type="button" class="view-btn" wire:click="contactModal({{$user->id}})">
-						Contact
-					</button>
+					@include('livewire.studio.button')
 					
 				</div>
 			</div>
@@ -75,9 +65,10 @@
 			<img class="card-img-top" src="{{ $game->full_image }}" alt="Card image cap">
 			<div class="card-body">
 				<h5 class="card-title">{{ $game->title }}</h5>
-				<p class="card-text">{{ $user->comps }}</p>
 				<div class="card-btn">
-					<a class="view-btn" href="#">View</a>
+					
+					@include('livewire.studio.button_game')
+
 				</div>
 			</div>
 		</div>
@@ -128,6 +119,9 @@
             window.livewire.on('closeModal', () => {
                 $('#contactForm').modal('hide');
 			});
+            window.livewire.on('urlChange', param => {
+                history.pushState(null, null, param);
+            });
 		});
         $(document).on('click', '.closeModal', function(e) {
             $('#contactForm').modal('hide');

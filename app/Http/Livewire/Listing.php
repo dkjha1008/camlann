@@ -12,6 +12,7 @@ use App\Models\Game;
 use App\Models\Tag;
 use App\Models\Favourite;
 use App\Models\Contact;
+use App\Models\FavouriteGame;
 
 class Listing extends Component
 {
@@ -19,7 +20,7 @@ class Listing extends Component
 
 	public $user;
 	public $type='studio', $keyword, $tag;
-	public $tags, $searchData = [], $favourites;
+	public $tags, $searchData = [], $favourites, $favouriteGames;
 	
 	public $selectUser;
 	public $message;
@@ -78,6 +79,16 @@ class Listing extends Component
 		}
 		
 		$this->searchData = $data;
+
+
+		//...
+    	$url = route($this->user->role .'.listing', [
+			'type' => $this->type,
+			'keyword' => $this->keyword,
+			'tag' => $this->tag
+		]);
+
+    	$this->emit('urlChange', $url);
     }
 
 
@@ -102,8 +113,36 @@ class Listing extends Component
     	else {
     		$this->alert('error', 'Invalid Request');
     	}
-
     }
+
+
+
+
+
+    public function favouriteGame($game){
+
+    	$store = new FavouriteGame;
+    	$store->user_id = $this->user->id;
+    	$store->games_id = $game;
+    	$store->save();
+
+    	$this->alert('success', 'Favourite added');
+    }
+
+    public function unfavouriteGame($game){
+
+    	$fav = FavouriteGame::where('user_id', $this->user->id)->where('games_id', $game)->first();
+    	
+    	if(@$fav){
+	    	$fav->delete();
+	    	$this->alert('success', 'Un-favourite done');
+    	}
+    	else {
+    		$this->alert('error', 'Invalid Request');
+    	}
+    }
+
+
 
 	//...
     public function emptyField(){
@@ -143,6 +182,9 @@ class Listing extends Component
     public function render()
     {
     	$this->favourites = $this->user->favourite()->pluck('fav_users_id')->toArray();
+
+    	$this->favouriteGames = $this->user->favouriteGames()->pluck('games_id')->toArray();
+
         return view('livewire.listing');
     }
 }

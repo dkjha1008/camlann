@@ -4,6 +4,7 @@
 		@include('layouts.includes.header_search')
 		
 		<ul class="list-unstyled">
+			{{--
 			<li class="nav-item navigation-icon">
 				<div class="dropdown">
 					<button type="button" class="btn-notifaction dropdown-toggle position-relative" data-bs-toggle="dropdown">
@@ -19,6 +20,9 @@
 					</ul>
 				</div>
 			</li>
+			--}}
+
+
 			<li class="nav-item dashboard-icon">
 				<div class="dropdown">
 					<button type="button" class="btn-dashboard dropdown-toggle position-relative" data-bs-toggle="dropdown">

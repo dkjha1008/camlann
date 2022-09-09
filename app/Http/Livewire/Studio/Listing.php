@@ -72,7 +72,17 @@ class Listing extends Component
 		
 		
 		$this->searchData = $data;
-		
+
+
+		//...
+    	$url = route('studio.listing', [
+			'user_type' => $this->user_type,
+			'keyword' => $this->keyword,
+			'tag' => $this->tag,
+			'publication' => $this->publication,
+		]);
+
+    	$this->emit('urlChange', $url);
     }
 
 
