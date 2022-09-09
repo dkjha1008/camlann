@@ -96,9 +96,7 @@
                 @if(@$user->userStudio->description)
                  <div class="url-field add-links-articles">
                   <h4 class="h4-design">Description</h4>
-                  <ul class="list-unstyled d-flex">
-                    <li>{{ $user->userStudio->description }}</li>
-                   </ul>
+                  {!! $user->userStudio->description !!}
                 </div>
                 @endif
                 @endif

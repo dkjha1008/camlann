@@ -54,18 +54,20 @@ class Listing extends Component
 								$query->orWhere('email', 'like', '%'.$this->keyword.'%');
 							}
 							
-							//if($this->user_type=='reporter') {
+							if($this->publication) {
 								$query->whereHas('publicationReporter', function ($que) {
 									if($this->publication){
 										$que->where('publication_id', $this->publication);
 									}
 								});
-							//}
-						
-						})
-						->whereHas('tags', function ($query) {
+							}
+
 							if($this->tag){
-								$query->where('tags_id', $this->tag);
+								$query->whereHas('tags', function ($que) {
+									if($this->tag){
+										$que->where('tags_id', $this->tag);
+									}
+								});
 							}
 						})
 						->get();
