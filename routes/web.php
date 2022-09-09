@@ -52,9 +52,9 @@ Route::get('/storage-link', function () {
 Route::post('/studio/contact-message', [ContactController::class, 'message'])->name('contact-message');
 Route::get('/user-view/{user}', [PagesController::class, 'userView'])->name('user.view');
 
-Route::get('/game/{game}', [PagesController::class, 'gameView'])->name('game.view');
+Route::get('/game/{game}/{slug}', [PagesController::class, 'gameView'])->name('game.view');
 
-Route::get('/news/{news}', [Studio\NewsController::class, 'view'])->name('news.view');
+Route::get('/news/{news}/{slug}', [Studio\NewsController::class, 'view'])->name('news.view');
 
 
 Route::get('/', function() {

@@ -95,7 +95,7 @@ class GamesController extends Controller
 		$store->youtube = json_encode($request->youtube);
 		
 		if ($request->hasFile('attach_files')){
-			$path = 'uploads/files/';
+			$path = 'storage/files/';
 			if(!is_dir($path)) {
 				mkdir($path, 0775, true);
 				chown($path, exec('whoami'));
@@ -113,7 +113,7 @@ class GamesController extends Controller
 		
 		
 		if ($request->hasFile('playable_demo_exe')){
-			$path = 'uploads/files/';
+			$path = 'storage/files/';
 			if(!is_dir($path)) {
 				mkdir($path, 0775, true);
 				chown($path, exec('whoami'));
@@ -242,7 +242,7 @@ class GamesController extends Controller
 		$game->youtube = json_encode($request->youtube);
 		
 		if ($request->hasFile('attach_files')){
-			$path = 'uploads/files/';
+			$path = 'storage/files/';
 			if(!is_dir($path)) {
 				mkdir($path, 0775, true);
 				chown($path, exec('whoami'));
@@ -260,7 +260,7 @@ class GamesController extends Controller
 		
 		
 		if ($request->hasFile('playable_demo_exe')){
-			$path = 'uploads/files/';
+			$path = 'storage/files/';
 			if(!is_dir($path)) {
 				mkdir($path, 0775, true);
 				chown($path, exec('whoami'));

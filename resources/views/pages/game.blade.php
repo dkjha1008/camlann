@@ -24,6 +24,34 @@
           </div>
       </div>
       @endif
+
+      @if($game->full_exe)
+      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+          <div class="tags-data">
+            <h4 class="h4-design"><a href="{{ $game->full_exe }}">Download</a> Exe File</h4>
+          </div>
+      </div>
+      @endif
+
+      @if($game->playable_demo)
+      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+          <div class="tags-data">
+            <h4 class="h4-design"><a href="{{ $game->playable_demo }}">Playable Demo</a></h4>
+          </div>
+      </div>
+      @endif
+
+      @if($game->attach_files)
+      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+          <div class="tags-data">
+            <h4 class="h4-design">Attachment File <a href="{{ $game->attach_files }}">Download</a></h4>
+          </div>
+      </div>
+      @endif
+
+
+
+
      </div>
   </div>
   </div>
@@ -40,6 +68,25 @@
       </div>
       @endforeach
      
+    </div>
+  </div>
+ </section>
+
+
+
+
+ <section class="desk-files-sec">
+  <div class="container-1205px">
+    <div class="row">
+      
+      @foreach($game->youtube_array as $you)
+      <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12">
+        <iframe width="420" height="315"
+          src="{{ $you }}">
+        </iframe>
+      </div>
+        @endforeach
+
     </div>
   </div>
  </section>

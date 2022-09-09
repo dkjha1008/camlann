@@ -53,10 +53,13 @@ class Listing extends Component
 								$query->orWhere('last_name', 'like', '%'.$this->keyword.'%');
 								$query->orWhere('email', 'like', '%'.$this->keyword.'%');
 							}
-						})
-						->whereHas('tags', function ($query) {
+
 							if($this->tag){
-								$query->where('tags_id', $this->tag);
+								$query->whereHas('tags', function ($que) {
+									if($this->tag){
+										$que->where('tags_id', $this->tag);
+									}
+								});
 							}
 						})
 						->get();
