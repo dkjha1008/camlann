@@ -1,4 +1,4 @@
-<div>
+<div class="container-for-box lsiting-wrapper_box">
     <form class="form-design">
 		<div class="row">
 		
@@ -40,47 +40,69 @@
 	
 	
 	<div class="row">
-		
 		@if($type=='studio')
+		<div class="table-design table-responsive">
+		<table>
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Email</th>
+				<th>Actions</th>
+			</tr>
+		</thead>
+		<tbody>
 		@foreach($searchData as $user)
-		<div class="card col-md-3" >
-			<img class="card-img-top" src="{{ $user->profile_pic }}" alt="Card image cap">
-			<div class="card-body">
-				<h5 class="card-title">{{ $user->name }}</h5>
-				<p class="card-text">{{ $user->email }}</p>
-				<div class="card-btn">
-
-					@include('livewire.studio.button')
-					
-				</div>
-			</div>
-		</div>
+		<tr>
+		<td>
+			<div class="game-title-img d-flex align-items-center">
+				<img src="{{ $user->profile_pic }}">
+				<span class="game-title">{{ $user->name }}</span>
+           </div> 
+		</td>
+		<td>
+			 <a href="mailto:{{ $user->email }}" class="mail-text">{{ $user->email }}</a>
+		</td>
+		<td class="action-btns">
+			@include('livewire.studio.button')
+		</td>
+	   </tr>
 		@endforeach
+		</tbody>
+		</table>
+		</div>
 		@endif
-		
-		
+
 		@if($type=='game')
-		@foreach($searchData as $game)
-		<div class="card col-md-3">
-			<img class="card-img-top" src="{{ $game->full_image }}" alt="Card image cap">
-			<div class="card-body">
-				<h5 class="card-title">{{ $game->title }}</h5>
-				<div class="card-btn">
-					
-					@include('livewire.studio.button_game')
-
-				</div>
+		<div class="table-design table-responsive">
+			<table>
+			<thead>
+				<tr>
+					<th>Name</th>
+					<th>Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				@foreach($searchData as $game)
+			<tr>
+			<td>
+				<div class="game-title-img d-flex align-items-center">
+					<img src="{{ $game->full_image }}">
+					<span class="game-title">{{ $game->title }}</span>
+			   </div> 
+			</td>
+			<td class="action-btns">
+				@include('livewire.studio.button_game')
+			</td>
+		   </tr>
+		   @endforeach
+			</tbody>
+			</table>
 			</div>
-		</div>
-		@endforeach
-		@endif
-		
+			@endif
 	</div>
 
-
-
 	<!-- Accept Modal Start Here-->
-    <div wire:ignore.self class="modal fade" id="contactForm" tabindex="-1" aria-labelledby="contactForm" aria-hidden="true">
+    <div wire:ignore.self class="modal fade modal-design" id="contactForm" tabindex="-1" aria-labelledby="contactForm" aria-hidden="true">
         <div class="modal-dialog modal_style">
             <button type="button" class="btn btn-default close closeModal">
                 <i class="fas fa-close"></i>

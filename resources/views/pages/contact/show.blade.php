@@ -1,19 +1,23 @@
 @extends('layouts.app')
 @section('content')
 <div class="row">
-	
+	<div class="comments-box-wrapper">
+	<div class="comments-box-msg">
 	@foreach($threads as $thread)
-	<div class="card">
-		<div class="card-body">
-		{{ $thread->message }}
+	<div class="comment-box d-flex align-items-center">
+		<div class="comment-box-img">
+			<img src="https://camlann.itxwebsolutions.com/assets/images/thumbnail.png">
+		</div>
+		<div class="comment-box-cntnt">
+		<h5 class="user-name">Loream</h5>
+		<p class="comment-date"></p>
+		 <p class="description">{{ $thread->message }}</p>
 		</div>
 	</div>
 	@endforeach
-
-
-
-
-	<div class="card">
+	</div>
+	<div class="comments-box-msg-send">
+	<div class="comment-box-formS">
 	{!! Form::open(['route' => ['contact.store', $user->id], 'class'=>'form-design']) !!}
         
         <div class="form-grouph input-design{!! ($errors->has('message') ? ' has-error' : '') !!}">
@@ -28,6 +32,7 @@
 		
 	{!! Form::close() !!}
 	</div>
-		
+	</div>
+	</div>
 </div>
 @endsection

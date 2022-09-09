@@ -487,7 +487,6 @@ img{
 .page-text-header {
     font-size: 17.59px;
     color: var(--lightblack);
-    padding-left: 20px;
 }
 .avatar-upload .avatar-edit input + label:hover {
     background: var(--blue);
@@ -1396,6 +1395,100 @@ a.profile-links {
     padding: 6px 25px;
     border-radius: 8px 8px 0px 8px;
 }
+.comments-box-wrapper {
+    background-color: var(--bgformdivs);
+    border-radius: 16px;
+    padding: 40px 50px;
+}
+.comment-box .comment-box-img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: 20px;
+}
+.comment-box-cntnt .user-name {
+    font-size: 16px;
+    color: #000;
+    margin-bottom: 2px;
+}
+.comment-box-cntnt .comment-date {
+    font-size: 12px;
+    margin-bottom: 5px;
+}
+.comment-box-cntnt .description {
+    margin-bottom: 0px;
+    font-size: 14px;
+}
+.comment-box {
+    margin-bottom: 20px;
+}
+.comments-box-msg-send {
+    margin-top: 45px;
+}
+.comments-box-msg-send .input-design .form-label {
+    color: #000;
+    font-size: 14px;
+}
+.comment-box-formS textarea {
+    width: 100%;
+    border: 1px solid var(--borderColor);
+    font-size: 14px;
+    color: var(--grey2);
+    font-weight: 300;
+    border-radius: 5px;
+    padding: 12px;
+}
+.select2-container--default .select2-search--inline .select2-search__field {
+    margin: 0px;
+}
+.lsiting-wrapper_box .select-design select {
+    background-position: 95%;
+}
+.lsiting-wrapper_box .table-design {
+    margin-top: 30px;
+}
+.lsiting-wrapper_box .table-design .action-btns>a {
+    margin-right: 10px;
+}
+.mail-text {
+    color: #333;
+    text-decoration: none;
+    font-size: 14px;
+}
+.mail-text:hover {
+    color: #ec428a;
+}
+.lsiting-wrapper_box .table-design .action-btns>button {
+    min-width: initial !important;
+    padding: 0px;
+}
+.input-design textarea {
+    width: 100%;
+    border: 1px solid var(--borderColor);
+    font-size: 14px;
+    color: var(--grey2);
+    font-weight: 300;
+    border-radius: 5px;
+    padding: 12px;
+}
+.main-header .form-grouph.select-design select {
+    background-position: 94%;
+}
+#footer-main p {
+    margin-bottom: 0px;
+    text-align: center;
+    font-size: 16px;
+    color: #7f7f7f;
+    font-weight: 400;
+}
+#footer-main {
+    background-color: #f5f3f8;
+    padding: 25px 0px;
+    border-top: 1px solid #e7e7e7;
+}
+
+
 
 @media (min-width: 1200px){
     .view-data-box {
