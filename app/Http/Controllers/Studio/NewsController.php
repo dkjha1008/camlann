@@ -43,7 +43,7 @@ class NewsController extends Controller
 		);
 		
 		$user = auth()->user();
-		$games = Game::whereStatus('1')->pluck('title', 'id');
+		$games = $user->games()->whereStatus('1')->pluck('title', 'id');
 		
         return view('studio.news.create', compact('user', 'title', 'games'));
     }
@@ -127,7 +127,7 @@ class NewsController extends Controller
 		);
 		
 		$user = auth()->user();
-		$games = Game::whereStatus('1')->pluck('title', 'id');
+		$games = $user->games()->whereStatus('1')->pluck('title', 'id');
 		
         return view('studio.news.edit', compact('user', 'title', 'games', 'news'));
     }

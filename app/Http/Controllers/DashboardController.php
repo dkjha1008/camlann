@@ -23,7 +23,27 @@ class DashboardController extends Controller
 
 		$favUser = $user->favourite()->limit('10')->orderBy('id', 'desc')->get();
 
-		$news = News::whereStatus('1')->where('publish_date', '>=', date('Y-m-d'))->limit('10')->orderBy('id', 'desc')->get();
+
+
+		$favGamesId = $user->favouriteGames()->pluck('games_id');
+		$news = News::whereStatus('1')
+					->where('publish_date', '<=', date('Y-m-d'))
+					->whereHas('newsGames', function($query) use($favGamesId) {
+						$query->whereIn('games_id', $favGamesId);
+					})
+					->limit('10')
+					->orderBy('id', 'desc')
+					->get();
+
+
+
+
+
+
+
+
+
+
 
 		//...messages
 		$sender = Contact::where('user_id', $user->id)->select('reciever_id')->groupBY('reciever_id')->limit('10')->orderBy('id', 'desc')->get()->toArray();

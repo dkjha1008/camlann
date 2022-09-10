@@ -22,11 +22,16 @@
 	{!! $errors->first('title', '<span class="help-block">:message</span>') !!}
 </div>
 
-
+@php
+	$date = date('Y-m-d');
+	if(@$news){
+	$date = null;
+	}
+@endphp
 <div class="form-flex two-column mb-15">
 	<div class="form-grouph input-design{!! ($errors->has('publish_date') ? ' has-error' : '') !!}">
 		{!! Form::label('publish_date','Publish Date', ['class' => 'form-label']) !!}
-		{!! Form::date('publish_date', null, ['class' => ($errors->has('publish_date') ? ' is-invalid' : '')]) !!}
+		{!! Form::date('publish_date', $date, ['class' => ($errors->has('publish_date') ? ' is-invalid' : '')]) !!}
 		{!! $errors->first('publish_date', '<span class="help-block">:message</span>') !!}
 	</div>
 
