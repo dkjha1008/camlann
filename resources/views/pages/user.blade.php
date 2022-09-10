@@ -206,6 +206,7 @@
                 $games = $user->games()->whereStatus('1')->get();
                 @endphp
                 @if(@$games)
+                <h3>Games</h3>
                 <div class="row">
                   @foreach($games as $game)
                   <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12">
@@ -214,6 +215,26 @@
                       <img src="{{ $game->full_image }}">
                       @endif
                       <b>{{ $game->title }}</b>
+                    </a>
+                  </div>
+                    @endforeach
+                </div>
+                @endif
+
+
+                @php
+                $news = $user->news()->whereStatus('1')->where('publish_date', '<=', date('Y-m-d'))->get();
+                @endphp
+                @if(@$news)
+                <h3>News</h3>
+                <div class="row">
+                  @foreach($news as $data)
+                  <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12">
+                    <a href="{{ route('news.view', [$data->id, $data->slug]) }}">
+                      @if($data->full_image)
+                      <img src="{{ $data->full_image }}">
+                      @endif
+                      <b>{{ $data->title }}</b>
                     </a>
                   </div>
                     @endforeach
