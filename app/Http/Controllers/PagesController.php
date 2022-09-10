@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Game;
+use App\Models\Publication;
 
 
 class PagesController extends Controller
@@ -41,4 +42,19 @@ class PagesController extends Controller
 		
         return view('pages.game', compact('title', 'game'));
     }
+
+    //
+    public function publicationView(Publication $publication)
+    {
+		$title = array(
+			'title' => 'Publication View',
+			'active' => 'publication',
+		);
+		
+        return view('pages.publication', compact('title', 'publication'));
+    }
+
+
+
+    
 }

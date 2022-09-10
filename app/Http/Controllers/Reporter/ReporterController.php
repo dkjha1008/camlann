@@ -8,6 +8,9 @@ use Jantinnerezo\LivewireAlert\LivewireAlert;
 use App\Models\Tag;
 use App\Models\UserReporter;
 use App\Models\UserTags;
+use App\Models\PublicationReporter;
+
+
 
 class ReporterController extends Controller
 {
@@ -34,6 +37,7 @@ class ReporterController extends Controller
 		$request->validate([
             'twitter' => 'required|max:255',
             'bio' => 'required',
+            'publication_id' => 'required',
         ]);
 		
 		$user = auth()->user();
@@ -83,6 +87,17 @@ class ReporterController extends Controller
                 }
             }
         }
+
+
+        $checkPublication = PublicationReporter::where('users_id', $user->id)->first();
+        $storePublication = new PublicationReporter;
+        if(@$checkPublication){
+        	$storePublication->id = $checkPublication->id;
+        	$storePublication->exists = true;
+        }
+        $storePublication->users_id = $user->id;
+        $storePublication->publication_id = $request->publication_id;
+        $storePublication->save();
 		
 		
 		$this->flash('success', 'Profile updated successfully');

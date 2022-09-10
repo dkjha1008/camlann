@@ -3,6 +3,13 @@
 @php
 $streamer = $user->userStreamer;
 $userTags = $user->tags->pluck('tags_id');
+$userPublication = '';
+if(@$user->publicationReporter){
+$userPublication = $user->publicationReporter->pluck('publication_id');
+}
+
+$publications = \App\Models\Publication::whereStatus('1')->pluck('publication', 'id');
+
 @endphp
 
 <div class="container-for-box">
@@ -15,10 +22,16 @@ $userTags = $user->tags->pluck('tags_id');
 			{!! $errors->first('twitter', '<span class="help-block">:message</span>') !!}
 		</div>
 
-		<div class="form-grouph input-design{!! ($errors->has('bio') ? ' has-error' : '') !!}">
+		<div class="form-grouph input-design mb-15{!! ($errors->has('bio') ? ' has-error' : '') !!}">
 			{!! Form::label('bio','Bio', ['class' => 'form-label']) !!}
-			{!! Form::textarea('bio', null, ['class' => ($errors->has('bio') ? ' is-invalid' : ''), 'multiple']) !!}
+			{!! Form::textarea('bio', $user->bio ?? null, ['class' => ($errors->has('bio') ? ' is-invalid' : ''), 'multiple']) !!}
 			{!! $errors->first('bio', '<span class="help-block">:message</span>') !!}
+		</div>
+
+		<div class="form-grouph select-design mb-15{!! ($errors->has('publication_id') ? ' has-error' : '') !!}">
+			{!! Form::label('publication_id','Select Publication', ['class' => 'form-label']) !!}
+			{!! Form::select('publication_id', $publications, $userPublication ?? null, ['class' => ($errors->has('publication_id') ? ' is-invalid' : ''), 'placeholder'=>'Select Publication']) !!}
+			{!! $errors->first('publication_id', '<span class="help-block">:message</span>') !!}
 		</div>
 		
 		<div class="addNewLayout">
@@ -161,8 +174,9 @@ $userTags = $user->tags->pluck('tags_id');
 </div>
 
 @include('includes.croppie')
-
+<script src="https://cdn.ckeditor.com/4.19.1/standard/ckeditor.js"></script>
 <script>
+	CKEDITOR.replace( 'bio' );
 	//add new layout
 	function addNew(){
 		var rowCount = $('.addNewLayout .layout').length;
