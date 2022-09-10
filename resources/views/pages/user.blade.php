@@ -1,6 +1,6 @@
 @extends('layouts.app2')
 @section('content')
-<section class="view-inner-wrapper" style="background-image: url({{ asset('assets/images/side-banner.png') }}">
+<section class="view-inner-wrapper" style="background-image: url('{{ asset('assets/images/side-banner.png') }}')">
     <div class="container-1205px">
       <div class="page-headeing-wrap">
         <h1>{{ $user->userStudio->studio_name ?? $user->name }}</h1>
@@ -139,7 +139,7 @@
                 @if(@$user->userStudio->description)
                  <div class="url-field add-links-articles">
                   <h4 class="h4-design">Description</h4>
-                  {!! $user->userStudio->description !!}
+                  <p>{!! $user->userStudio->description !!}</p>
                 </div>
                 @endif
                 @endif

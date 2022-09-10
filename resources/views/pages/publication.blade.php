@@ -1,6 +1,6 @@
 @extends('layouts.app2')
 @section('content')
-<section class="view-inner-wrapper" style="background-image: url({{ asset('assets/images/side-banner.png') }}">
+<section class="view-inner-wrapper" style="background-image: url('{{ asset('assets/images/side-banner.png') }}')">
     <div class="container-1205px">
       <div class="page-headeing-wrap">
         <h1>{{ $publication->publication }}</h1>
@@ -23,7 +23,7 @@
           </div>
           <div class="col-xl-9 col-md-9 col-sm-12">
             <div class="view-data-box">
-               {!! $publication->description !!}
+               <p>{!! $publication->description !!}</p>
             </div>
 
 

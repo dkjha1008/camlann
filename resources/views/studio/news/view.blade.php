@@ -1,87 +1,49 @@
 @extends('layouts.app2')
 @section('content')
 <main id="main-content">
- <section class="banner-section--view" style="background-image: url('/assets/images/game-banner.png')">
-   <div class="container-1205px">
-    <div class="page-headeing-wrap">
-      <h1>{{$new->title}}</h1>
+ <section class="view-inner-wrapper" style="background-image: url('{{ asset('assets/images/side-banner.png') }}')">
+    <div class="container-1205px">
+      <div class="page-headeing-wrap">
+        <h1>{{$new->title}}</h1>
+      </div>
     </div>
-   </div>
- </section>
- <section class="tags-comps-data">
-  <div class="container-1205px">
-    <div class="tags-white-wrapper">
-     <div class="row">
-      <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
-          <div class="tags-data">
-            <h4 class="h4-design">Game Tags</h4>
-            <ul class="list-unstyled tags-list-design">
-              <li>{{$new->slug}}</li>
-             <!--  <li>Game</li>
-              <li>Action Game</li>
-              <li>Game</li>
-              <li>Game</li>
-              <li>Action Game</li> -->
-            </ul>
+  </section>
+ <section class="inner-view-content">
+    <div class="container-1205px">
+    <div class="light-bg-container">
+      <div class="back-div d-flex align-items-center">
+          <span class="page-text-header">News</span>
+      </div>
+      <div class="container-for-box">
+        <div class="row">
+          <div class="col-xl-3 col-md-3 col-sm-12">
+          <div class="uploaded-img-view position-relative">
+            <img src="{{ asset('assets/images/thumbnail.png') }}">
+            <span class="profile-visibility-tag">Active</span>
           </div>
-      </div>
-      <!-- <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
-        <div class="tags-data">
-          <h4 class="h4-design">Comps</h4>
-          <ul class="list-unstyled comps-list-design">
-            <li><img src="/assets/images/icons/games.svg"></li>
-            <li><img src="assets/images/icons/games.svg"> Adventures Game</li>
-            <li><img src="assets/images/icons/games.svg"> Adventures Game</li>
-            <li><img src="assets/images/icons/games.svg"> Adventures Game</li>
-          </ul>
+          </div>
+          <div class="col-xl-9 col-md-9 col-sm-12">
+            <div class="view-data-box">
+                 <div class="description-text-design">
+                  <h4 class="h4-design">Publish Date</h4>
+                  <p>10 sep 2022</p>
+                </div>
+                <div class="tags-data">
+                  <h4 class="h4-design">Games Tags</h4>
+                  <ul class="list-unstyled tags-list-design">
+                    <li>{{$new->slug}}</li>
+                  </ul>
+                </div>
+                <div class="description-text">
+                    <h4 class="h4-design">Description</h4>
+                    <p>{!! $new->description !!}</p>
+                  </div>
+            </div>
+          </div>
         </div>
-    </div> -->
-     </div>
-  </div>
-  </div>
- </section>
- <section class="game-screenshots-design">
-  <div class="container-1205px">
-    <div class="game-ss-header">
-      <h2 class="h2-design">{!! $new->description !!}</h2>
+      </div>
     </div>
-    <div class="slider game-ss-slider">
-      <div>
-      	
-     
-        <!-- <img src="/assets/images/game-ss.png"> -->
-    
-      </div>
-      <!-- <div>
-        <img src="assets/images/game-ss.png">
-      </div>
-      <div>
-        <img src="assets/images/game-ss.png">
-      </div>
-      <div>
-        <img src="assets/images/game-ss.png">
-      </div> -->
     </div>
-  </div>
- </section>
- <!-- <section class="video-sec-wrap">
-  <div class="full-width-container">
-     <div class="row align-items-center">
-      <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
-        <div class="video-wrapper">
-          <img src="assets/images/youtube-thumbnail.png">
-          <button class="play-btn"><img src="/assets/images/icons/Youtube.svg"></button>
-        </div>
-      </div>
-      <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
-        <div class="heading-paragraph-design">
-          <h2>Latest Game Trends</h2>
-          <p>In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without</p>
-          <a href="#" class="heading-btn">Explore</a>
-        </div>
-      </div>
-     </div>
-  </div>
- </section> -->
+  </section>
 </main>
 @endsection
