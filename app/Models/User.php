@@ -86,7 +86,7 @@ class User extends Authenticatable
 	
 	public function publicationReporter()
     {
-        return $this->hasMany(PublicationReporter::class, 'users_id', 'id');
+        return $this->hasOne(PublicationReporter::class, 'users_id', 'id');
     }
 	
 	

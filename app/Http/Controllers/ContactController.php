@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 use App\Models\user;
 use App\Models\Contact;
+use App\Models\Favourite;
+use App\Models\FavouriteGame;
 
 class ContactController extends Controller
 {
@@ -78,6 +80,55 @@ class ContactController extends Controller
 		$this->flash('success', 'Message send successfully');
         return redirect()->back();
 	}
+
+
+
+
+
+	public function favouriteAction($user){
+
+		$userAuth = auth()->user();
+
+    	$fav = Favourite::where('user_id', $userAuth->id)->where('fav_users_id', $user)->first();
+    	
+    	if(@$fav){
+	    	$fav->delete();
+	    	$this->flash('success', 'Un-favourite done');
+    	}
+    	else {
+    		$store = new Favourite;
+	    	$store->user_id = $userAuth->id;
+	    	$store->fav_users_id = $user;
+	    	$store->save();
+
+	    	$this->flash('success', 'Favourite added');
+    	}
+
+    	return redirect()->back();
+    }
+
+
+    public function favouriteGameAction($game){
+
+		$userAuth = auth()->user();
+
+    	$fav = FavouriteGame::where('user_id', $userAuth->id)->where('games_id', $game)->first();
+    	
+    	if(@$fav){
+	    	$fav->delete();
+	    	$this->flash('success', 'Un-favourite done');
+    	}
+    	else {
+    		$store = new FavouriteGame;
+	    	$store->user_id = $userAuth->id;
+	    	$store->games_id = $game;
+	    	$store->save();
+
+	    	$this->flash('success', 'Favourite added');
+    	}
+
+    	return redirect()->back();
+    }
 
 
 

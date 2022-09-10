@@ -69,6 +69,14 @@ class Listing extends Component
 									}
 								});
 							}
+
+
+							if($this->user_type=='reporter'){
+								$query->whereHas('userReporter', function ($que) {
+										$que->where('visibility', 'public');
+								});
+							}
+
 						})
 						->get();
 		

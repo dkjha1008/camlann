@@ -50,11 +50,15 @@ Route::get('/storage-link', function () {
 
 
 Route::post('/studio/contact-message', [ContactController::class, 'message'])->name('contact-message');
+
 Route::get('/user-view/{user}', [PagesController::class, 'userView'])->name('user.view');
 
 Route::get('/game/{game}/{slug}', [PagesController::class, 'gameView'])->name('game.view');
 
+Route::get('/publication/{publication}', [PagesController::class, 'publicationView'])->name('publication.view');
+
 Route::get('/news/{news}/{slug}', [Studio\NewsController::class, 'view'])->name('news.view');
+
 
 
 Route::get('/', function() {
@@ -86,6 +90,13 @@ Route::middleware(['auth', 'verified'])->group(function () {
 			Route::post('/{user}/store', 'store')->name('contact.store');
 		});
 	});
+
+
+	//user fav unfav
+	Route::get('/favourite/user/{user}', [ContactController::class, 'favouriteAction'])->name('favourite.action');
+	//game fav unfav
+	Route::get('/favourite/game/{game}', [ContactController::class, 'favouriteGameAction'])->name('favourite.game.action');
+
 
 
 	

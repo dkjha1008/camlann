@@ -8,6 +8,7 @@ use Jantinnerezo\LivewireAlert\LivewireAlert;
 use App\Models\Tag;
 use App\Models\UserStreamer;
 use App\Models\UserTags;
+use App\Models\PublicationReporter;
 
 class StreamerController extends Controller
 {
@@ -36,6 +37,7 @@ class StreamerController extends Controller
             'youtube_channel' => 'required|max:255',
             'twitch_channel' => 'required|max:255',
             'bio' => 'required',
+            'publication_id' => 'required',
         ]);
 		
 		$user = auth()->user();
@@ -88,6 +90,17 @@ class StreamerController extends Controller
                 }
             }
         }
+
+
+        $checkPublication = PublicationReporter::where('users_id', $user->id)->first();
+        $storePublication = new PublicationReporter;
+        if(@$checkPublication){
+        	$storePublication->id = $checkPublication->id;
+        	$storePublication->exists = true;
+        }
+        $storePublication->users_id = $user->id;
+        $storePublication->publication_id = $request->publication_id;
+        $storePublication->save();
 		
 		
 		$this->flash('success', 'Profile updated successfully');
