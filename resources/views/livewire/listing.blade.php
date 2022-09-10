@@ -85,7 +85,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				@foreach($searchData as $game)
+				@foreach($searchDataGames as $game)
 			<tr>
 			<td>
 				<div class="game-title-img d-flex align-items-center">

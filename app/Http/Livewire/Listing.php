@@ -20,7 +20,7 @@ class Listing extends Component
 
 	public $user;
 	public $type='studio', $keyword, $tag;
-	public $tags, $searchData = [], $favourites, $favouriteGames;
+	public $tags, $searchData = [], $searchDataGames = [], $favourites, $favouriteGames;
 	
 	public $selectUser;
 	public $message;
@@ -44,9 +44,8 @@ class Listing extends Component
 	
 	public function search()
     {
-		$data = [];
 		if($this->type == 'studio'){
-			$data = User::whereRole('studio')
+			$this->searchData = User::whereRole('studio')
 						->where(function ($query) {
 							if($this->keyword){
 								$query->where('first_name', 'like', '%'.$this->keyword.'%');
@@ -66,7 +65,7 @@ class Listing extends Component
 		
 		}
 		else {
-			$data = Game::query()
+			$this->searchDataGames = Game::query()
 				->where(function ($query) {
 					if($this->keyword){
 						$query->where('title', 'like', '%'.$this->keyword.'%');
@@ -83,7 +82,6 @@ class Listing extends Component
 				->get();
 		}
 		
-		$this->searchData = $data;
 
 
 		//...
