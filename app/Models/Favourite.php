@@ -15,4 +15,9 @@ class Favourite extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
+    public function userFav()
+    {
+        return $this->belongsTo(User::class, 'fav_users_id');
+    }
+
 }

@@ -6,9 +6,27 @@
 	@endif
 
 
-	@if(@count($favUser)>0)
-	@include('pages.dashboard.favUser', ['favUser'=>$favUser])
+		
+	@if($user->role=='studio')
+	
+		@if(@count($favReporter)>0)
+		@include('pages.dashboard.favUser', ['users'=>$favReporter, 'title'=>'Favourite Reporter'])
+		@endif
+
+		@if(@count($favStreamer)>0)
+		@include('pages.dashboard.favUser', ['users'=>$favStreamer, 'title'=>'Favourite Streamer'])
+		@endif
+
+	@else
+
+		@if(@count($favStudio)>0)
+		@include('pages.dashboard.favUser', ['users'=>$favStudio, 'title'=>'Favourite Studios'])
+		@endif
+
 	@endif
+
+
+
 
 	@if(@count($favGames)>0)
 	@include('pages.dashboard.favGames', ['favGames'=>$favGames])
