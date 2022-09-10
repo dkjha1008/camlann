@@ -5,7 +5,7 @@
 </div>
 
 <div class="form-grouph img-upload-design">
-	<label>Title image upload</label>
+	<label>Upload Banner</label>
 	<div class="avatar-upload">
 		<div class="avatar-edit">
 			<input type='file' id="imageUpload" accept=".png, .jpg, .jpeg" />
@@ -37,11 +37,19 @@
 @endphp
 
 
-<div class="form-grouph select-custom-design{!! ($errors->has('tags') ? ' has-error' : '') !!}">
+<div class="form-grouph select-custom-design mb-15{!! ($errors->has('tags') ? ' has-error' : '') !!}">
 	{!! Form::label('tags','Game Tags', ['class' => 'form-label']) !!}
 	{!! Form::select('tags[]', $tags, $gameTags ?? null, ['class' => 'select-tags'.($errors->has('tags') ? ' is-invalid' : ''), 'multiple', 'required']) !!}
 	{!! $errors->first('tags', '<span class="help-block">:message</span>') !!}
 </div>
+
+
+<div class="form-grouph textarea-design mb-15{!! ($errors->has('description') ? ' has-error' : '') !!}">
+	{!! Form::label('description','Description', ['class' => 'form-label']) !!}
+	{!! Form::textarea('description', null, ['class' => ($errors->has('description') ? ' is-invalid' : '')]) !!}
+	{!! $errors->first('description', '<span class="help-block">:message</span>') !!}
+</div>
+
 
 
 <div class="form-grouph multiple-img-upload mb-15">
@@ -173,8 +181,10 @@
 @include('includes.croppie')
 <link href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.css" rel="stylesheet" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.js"></script>
-
+<script src="https://cdn.ckeditor.com/4.19.1/standard/ckeditor.js"></script>
 <script>
+	CKEDITOR.replace( 'description' );
+
 	var uploadedDocumentMap = {}
 	Dropzone.options.documentDropzone = {
 		url: '{{ route('dropzone') }}',

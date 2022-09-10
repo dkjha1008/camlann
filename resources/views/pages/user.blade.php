@@ -3,7 +3,7 @@
 <section class="view-inner-wrapper" style="background-image: url({{ asset('assets/images/side-banner.png') }}">
     <div class="container-1205px">
       <div class="page-headeing-wrap">
-        <h1>{{ @$user->name }}</h1>
+        <h1>{{ $user->userStudio->studio_name ?? $user->name }}</h1>
       </div>
     </div>
   </section>
@@ -144,6 +144,26 @@
                 </div>
                 @endif
                 @endif
+
+                @php
+                $games = $user->games()->whereStatus('1')->get();
+                @endphp
+                @if(@$games)
+                <div class="row">
+                  @foreach($games as $game)
+                  <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12">
+                    <a href="{{ route('game.view', [$game->id, $game->slug]) }}">
+                      @if($game->full_image)
+                      <img src="{{ $game->full_image }}">
+                      @endif
+                      <b>{{ $game->title }}</b>
+                    </a>
+                  </div>
+                    @endforeach
+                </div>
+                @endif
+
+
             </div>
           </div>
         </div>

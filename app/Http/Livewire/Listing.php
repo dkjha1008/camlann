@@ -72,10 +72,12 @@ class Listing extends Component
 						$query->where('title', 'like', '%'.$this->keyword.'%');
 						$query->orWhere('comps', 'like', '%'.$this->keyword.'%');
 					}
-				})
-				->whereHas('gameTags', function ($query) {
 					if($this->tag){
-						$query->where('tags_id', $this->tag);
+						$query->whereHas('gameTags', function ($que) {
+							if($this->tag){
+								$que->where('tags_id', $this->tag);
+							}
+						});
 					}
 				})
 				->get();

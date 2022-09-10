@@ -6,10 +6,12 @@
 	@foreach($threads as $thread)
 	<div class="comment-box d-flex align-items-center">
 		<div class="comment-box-img">
-			<img src="https://camlann.itxwebsolutions.com/assets/images/thumbnail.png">
+			@if(@$thread->user->profile_pic)
+            <img src="{{ $thread->user->profile_pic }}">
+            @endif
 		</div>
 		<div class="comment-box-cntnt">
-		<h5 class="user-name">Loream</h5>
+		<h5 class="user-name">{{ $thread->user->userStudio->studio_name ?? $thread->user->name }}</h5>
 		<p class="comment-date"></p>
 		 <p class="description">{{ $thread->message }}</p>
 		</div>

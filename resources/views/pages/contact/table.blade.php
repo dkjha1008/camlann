@@ -19,7 +19,7 @@
 								@if(@$user->profile_pic)
 									<img src="{{ $user->profile_pic }}">
 								@endif
-								<span class="game-title">{{ $user->name }}</span>
+								<span class="game-title">{{ $user->userStudio->studio_name ?? $user->name }}</span>
 							</div>
 						</td>
 						<td>

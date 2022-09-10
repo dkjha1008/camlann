@@ -18,6 +18,8 @@
 					<input placeholder="Search keyword" wire:model="keyword" type="text">
 				</div>
 			</div>
+
+			{{--
 			<div class="col-md-3">
 				<div class="form-grouph select-design">
 					<select wire:model="tag">
@@ -28,6 +30,7 @@
 					</select>
 				</div>
 			</div>
+			--}}
 			
 			<div class="col-md-2">
 				<button class="submit-short-btn" type="button" wire:click="search" wire:loading.attr="disabled">
@@ -56,7 +59,7 @@
 		<td>
 			<div class="game-title-img d-flex align-items-center">
 				<img src="{{ $user->profile_pic }}">
-				<span class="game-title">{{ $user->name }}</span>
+				<span class="game-title">{{ $user->userStudio->studio_name ?? $user->name }}</span>
            </div> 
 		</td>
 		<td>
