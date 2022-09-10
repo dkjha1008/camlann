@@ -13,7 +13,7 @@
      <div class="row">
       
      @if($game->gameTags)
-      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+      <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 mb-3">
           <div class="tags-data">
             <h4 class="h4-design">Game Tags</h4>
             <ul class="list-unstyled tags-list-design">
@@ -26,34 +26,37 @@
       @endif
 
       @if($game->full_exe)
-      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
-          <div class="tags-data">
-            <h4 class="h4-design"><a href="{{ $game->full_exe }}">Download</a> Exe File</h4>
+      <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 mb-3">
+          <div class="link-button_design">
+            <h4 class="h4-design">Exe File</h4>
+            <a href="{{ $game->full_exe }}"  class="btn-design">Download</a> 
           </div>
       </div>
       @endif
 
       @if($game->playable_demo)
-      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
-          <div class="tags-data">
-            <h4 class="h4-design"><a href="{{ $game->playable_demo }}">Playable Demo</a></h4>
+      <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 mb-3">
+          <div class="link-button_design">
+             <h4 class="h4-design">Playable Demo</h4>
+            <a href="{{ $game->playable_demo }}" class="btn-design">Playable Demo</a>
           </div>
       </div>
       @endif
 
       @if($game->attach_files)
-      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
-          <div class="tags-data">
-            <h4 class="h4-design">Attachment File <a href="{{ $game->attach_files }}">Download</a></h4>
+      <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 mb-3">
+          <div class="link-button_design">
+          <h4 class="h4-design">Attachment File</h4>
+            <a href="{{ $game->attach_files }}" class="btn-design">Download</a>
           </div>
       </div>
       @endif
 
       @if($game->description)
-      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+      <div class="col-xl-12 col-lg-12 col-md-6 col-sm-12 mb-3">
           <div class="tags-data">
             <h4 class="h4-design">Description</h4>
-            {!! $game->description !!}
+            <p>{!! $game->description !!}</p>
           </div>
       </div>
       @endif

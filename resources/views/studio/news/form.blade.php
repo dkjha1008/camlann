@@ -15,7 +15,9 @@
 	<input type="file" name="image" />
 	
 	@if(@$news && $news->full_image)
-		<img width="200" src="{{ $news->full_image }}">
+	<div class="uploaded-ig-attr">
+		<img src="{{ $news->full_image }}">
+    </div>
 	@endif
 	{!! $errors->first('title', '<span class="help-block">:message</span>') !!}
 </div>
@@ -41,11 +43,20 @@
 		{!! $errors->first('games', '<span class="help-block">:message</span>') !!}
 	</div>
 </div>
-
 <div class="form-grouph radio-design mb-15{!! ($errors->has('status') ? ' has-error' : '') !!}">
-	{!! Form::label('status','Status', ['class' => 'form-label']) !!}
-	{!! Form::radio('status','1') !!} Active
-	{!! Form::radio('status','0') !!} De-active
+{!! Form::label('status','Status', ['class' => 'form-label']) !!}
+	<div class="d-flex">
+	<div class="checkbox-design position-relative d-flex align-items-center mr-10">
+	                    {!! Form::radio('status','1') !!} 
+						<button class="checkbox-btn"></button>
+						<span class="checkbox-text">Active</span>
+	</div>
+	<div class="checkbox-design position-relative d-flex align-items-center">
+	{!! Form::radio('status','0') !!} 
+						<button class="checkbox-btn"></button>
+						<span class="checkbox-text">De-active</span>
+	</div>
+	</div>
 	{!! $errors->first('status', '<span class="help-block">:message</span>') !!}
 </div>
 

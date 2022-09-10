@@ -52,17 +52,17 @@
 
 
 
-<div class="form-grouph multiple-img-upload mb-15">
+<div class="form-grouph multiple-img-upload mb-15 mt-4">
 	<label>Screenshots of game upload</label>
 
 
 	@if(@$game && $game->screenshots)
-	<div class="row">
+	<div class="row game-ss-uploaded">
 	@foreach(json_decode($game->screenshots) as $im => $image)
-	<div class="col-md-2 screen-{{$im}}">
+	<div class="col-xl-2 col-lg-2 col-md-2 col-sm-12 mb-15 screen-{{$im}}">
 		<img src="{{ asset('storage/screenshorts/'.$image) }}">
 		<input type="hidden" name="screenshots[]" value="{{ $image }}">
-		<button class="btn btn-sm btn-danger" onclick="removeImg({{$im}})">Delete</button>
+		<button class="btn btn-sm btn-danger" onclick="removeImg({{$im}})">&times;</button>
 	</div>
 	@endforeach
 	</div>
@@ -125,7 +125,7 @@
 	</div>
 	
 	@if(@$game->full_attach_files)
-		<a target="_blank" href="{{ $game->full_attach_files }}">Attachment</a>
+		<a target="_blank" href="{{ $game->full_attach_files }}" class="a-design">Attachment</a>
 	@endif
 </div>
 
@@ -149,8 +149,18 @@
 
 <div class="form-grouph radio-design mb-15{!! ($errors->has('status') ? ' has-error' : '') !!}">
 	{!! Form::label('status','Status', ['class' => 'form-label']) !!}
-	{!! Form::radio('status','1') !!} Active
-	{!! Form::radio('status','0') !!} Inactive
+	<div class="d-flex">
+	<div class="checkbox-design position-relative d-flex align-items-center mr-10">
+	                    {!! Form::radio('status','1') !!} 
+						<button class="checkbox-btn"></button>
+						<span class="checkbox-text">Active</span>
+	</div>
+	<div class="checkbox-design position-relative d-flex align-items-center">
+	                     {!! Form::radio('status','0') !!} 
+						<button class="checkbox-btn"></button>
+						<span class="checkbox-text">Inactive</span>
+	</div>
+	</div>
 	{!! $errors->first('status', '<span class="help-block">:message</span>') !!}
 </div>
 
