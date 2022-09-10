@@ -36,7 +36,7 @@ class StudioController extends Controller
     public function store(Request $request)
     {
 		$request->validate([
-            //'image' => 'required',
+            'studio_name' => 'required',
             'website' => 'required|max:255',
             'description' => 'required',
         ]);
@@ -74,7 +74,8 @@ class StudioController extends Controller
 		}
 		$details->users_id = $user->id;
 		$details->website = $request->website;
-		$details->description = $request->description;
+        $details->description = $request->description;
+		$details->studio_name = $request->studio_name;
 		$details->save();
 		
 		

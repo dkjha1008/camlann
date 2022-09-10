@@ -33,10 +33,15 @@ class ReporterController extends Controller
     {
 		$request->validate([
             'twitter' => 'required|max:255',
+            'bio' => 'required',
         ]);
 		
 		$user = auth()->user();
 		
+		$user->bio = $request->bio;
+		$user->save();
+
+
 		//...
 		$details = new UserReporter;
 		if(@$user->userReporter->id){

@@ -19,8 +19,9 @@ return new class extends Migration
 			
             $table->foreignId('users_id')->references('id')->on('users')->onDelete('cascade');
 			
-            $table->string('website');
-            $table->text('description');
+            $table->string('website')->nullable();
+            $table->string('studio_name')->nullable();
+            $table->text('description')->nullable();
 			
             $table->timestamps();
         });

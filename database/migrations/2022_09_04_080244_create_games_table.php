@@ -23,6 +23,7 @@ return new class extends Migration
 			$table->string('slug');
 			$table->string('image')->nullable();
             $table->text('screenshots')->nullable();
+            $table->text('description')->nullable();
             $table->text('youtube')->nullable();
             $table->text('attach_files')->nullable();
 			$table->string('playable_demo')->nullable();

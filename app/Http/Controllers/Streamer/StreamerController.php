@@ -35,10 +35,13 @@ class StreamerController extends Controller
             'twitter' => 'required|max:255',
             'youtube_channel' => 'required|max:255',
             'twitch_channel' => 'required|max:255',
+            'bio' => 'required',
         ]);
 		
 		$user = auth()->user();
 		
+		$user->bio = $request->bio;
+		$user->save();
 		//...
 		$details = new UserStreamer;
 		if(@$user->userStreamer->id){

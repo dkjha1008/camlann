@@ -20,7 +20,27 @@ $publications = \App\Models\Publication::whereStatus('1')->pluck('publication', 
 				<a href="{{ url('/') }}"><img src="{{ asset('assets/images/dark-logo.png') }}" alt="Logo"></a>
 			</div>
 			{!! Form::open(['route' => 'register', 'method'=>'post', 'class'=>'form-design']) !!}
+				{{--
+				<div class="form-grouph select-design mb-15{!! ($errors->has('role') ? ' has-error' : '') !!}">
+					{!! Form::label('role','Select Role', ['class' => 'form-label']) !!}
+					{!! Form::select('role', ['studio'=>'Studio', 'reporter'=>'Reporter', 'streamer'=>'Streamer'], null, ['class' => ($errors->has('role') ? ' is-invalid' : '')]) !!}
+					{!! $errors->first('role', '<span class="help-block">:message</span>') !!}
+				</div>
+				--}}
+
+
+				<div class="form-grouph select-design mb-15{!! ($errors->has('role') ? ' has-error' : '') !!}">
+					{!! Form::label('role','Select Role', ['class' => 'form-label']) !!}
+					{!! Form::radio('role', 'studio') !!} Studio
+					{!! Form::radio('role', 'streamer') !!} Streamer
+					{!! Form::radio('role', 'reporter') !!} Reporter
+					{!! $errors->first('role', '<span class="help-block">:message</span>') !!}
+				</div>
+
+
 				
+
+
 				<div class="form-grouph input-design mb-15{!! ($errors->has('first_name') ? ' has-error' : '') !!}">
 					{!! Form::label('first_name','First Name', ['class' => 'form-label']) !!}
 					{!! Form::text('first_name', request()->first_name ?? null, ['class' => ($errors->has('first_name') ? ' is-invalid' : '')]) !!}
@@ -32,6 +52,13 @@ $publications = \App\Models\Publication::whereStatus('1')->pluck('publication', 
 					{!! Form::text('last_name', request()->last_name ?? null, ['class' => ($errors->has('last_name') ? ' is-invalid' : '')]) !!}
 					{!! $errors->first('last_name', '<span class="help-block">:message</span>') !!}
 				</div>
+
+				<div class="form-grouph studioName input-design mb-15{!! ($errors->has('studio_name') ? ' has-error' : '') !!}" style="display:none">
+					{!! Form::label('studio_name','Studio Name', ['class' => 'form-label']) !!}
+					{!! Form::text('studio_name', request()->studio_name ?? null, ['class' => ($errors->has('studio_name') ? ' is-invalid' : '')]) !!}
+					{!! $errors->first('studio_name', '<span class="help-block">:message</span>') !!}
+				</div>
+
 				
 				<div class="form-grouph input-design mb-15{!! ($errors->has('email') ? ' has-error' : '') !!}">
 					{!! Form::label('email','Email', ['class' => 'form-label']) !!}
@@ -51,11 +78,7 @@ $publications = \App\Models\Publication::whereStatus('1')->pluck('publication', 
 					{!! $errors->first('password_confirmation', '<span class="help-block">:message</span>') !!}
 				</div>
 				
-				<div class="form-grouph select-design mb-15{!! ($errors->has('role') ? ' has-error' : '') !!}">
-					{!! Form::label('role','Select Role', ['class' => 'form-label']) !!}
-					{!! Form::select('role', ['studio'=>'Studio', 'reporter'=>'Reporter', 'streamer'=>'Streamer'], null, ['class' => ($errors->has('role') ? ' is-invalid' : '')]) !!}
-					{!! $errors->first('role', '<span class="help-block">:message</span>') !!}
-				</div>
+				
 
 				<div class="form-grouph publication select-design mb-15{!! ($errors->has('publication_id') ? ' has-error' : '') !!}" style="display:none">
 					{!! Form::label('publication_id','Select Publication', ['class' => 'form-label']) !!}
@@ -88,15 +111,21 @@ $publications = \App\Models\Publication::whereStatus('1')->pluck('publication', 
 
 @section('script')
 <script>
-	$('select[name=role]').on('change', function(){
+	$('input[name=role]').on('change', function(){
 		let val = $(this).val();
 
 		$('.publication').hide();
-		$('select[name=publication_id]').removeAttr('requried');
+		$('.studioName').hide();
+		$('select[name=publication_id]').removeAttr('required');
+		$('input[name=studio_name]').removeAttr('required');
 
 		if(val != 'studio'){
 			$('.publication').show();
-			$('select[name=publication_id]').attr('requried');
+			$('select[name=publication_id]').attr('required', 'required');
+		}
+		if(val == 'studio'){
+			$('.studioName').show();
+			$('input[name=studio_name]').attr('required', 'required');
 		}
 
 	})

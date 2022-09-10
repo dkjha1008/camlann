@@ -49,6 +49,15 @@
       </div>
       @endif
 
+      @if($game->description)
+      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+          <div class="tags-data">
+            <h4 class="h4-design">Description</h4>
+            {!! $game->description !!}
+          </div>
+      </div>
+      @endif
+
 
 
 
@@ -79,11 +88,12 @@
   <div class="container-1205px">
     <div class="row">
       
-      @foreach($game->youtube_array as $you)
+      @foreach($game->youtube_array as $link)
       <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12">
-        <iframe width="420" height="315"
-          src="{{ $you }}">
+        <div class="embed-responsive embed-responsive-16by9">
+        <iframe class="embed-responsive-item" allowfullscreen src="{{ $link }}">
         </iframe>
+      </div>
       </div>
         @endforeach
 

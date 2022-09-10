@@ -24,11 +24,7 @@
 		</div>
 
 
-		<div class="form-grouph input-design{!! ($errors->has('bio') ? ' has-error' : '') !!}">
-			{!! Form::label('bio','Bio', ['class' => 'form-label']) !!}
-			{!! Form::textarea('bio', null, ['class' => ($errors->has('bio') ? ' is-invalid' : ''), 'multiple']) !!}
-			{!! $errors->first('bio', '<span class="help-block">:message</span>') !!}
-		</div>
+		
 
 
 

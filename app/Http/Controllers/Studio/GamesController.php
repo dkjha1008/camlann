@@ -128,6 +128,7 @@ class GamesController extends Controller
 		}
 		
 		
+		$store->description = $request->description;
 		$store->status = $request->status;
 		$store->save();
 		
@@ -275,6 +276,7 @@ class GamesController extends Controller
 		}
 		
 		
+		$game->description = $request->description;
 		$game->status = $request->status;
 		$game->save();
 		
