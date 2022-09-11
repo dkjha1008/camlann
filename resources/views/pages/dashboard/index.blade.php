@@ -32,7 +32,7 @@
 	@include('pages.dashboard.favGames', ['favGames'=>$favGames])
 	@endif
 
-	@if(@$messages)
+	@if(@count($messages)>0)
 	@include('pages.contact.table', ['users'=>$messages])
 	@endif
 
