@@ -1,5 +1,8 @@
 @if(auth()->user()->role=='studio' && !request()->routeIs('studio.listing'))
 <form action="{{ route('studio.listing') }}" class="form-design">
+<div class="form-close-btn dsk-hide">
+      <button class="close-form-btn"><i class="fa-solid fa-xmark"></i></button>
+   </div>
 	<div class="row">
 		<div class="col-md-4">
 			<div class="form-grouph select-design">
@@ -21,6 +24,9 @@
 
 @if(auth()->user()->role=='reporter' && !request()->routeIs('reporter.listing'))
 <form action="{{ route('reporter.listing') }}" class="form-design">
+<div class="form-close-btn dsk-hide">
+      <button class="close-form-btn"><i class="fa-solid fa-xmark"></i></button>
+   </div>
 	<div class="row">
 		<div class="col-md-3">
 			<div class="form-grouph select-design">
@@ -41,6 +47,9 @@
 
 @if(auth()->user()->role=='streamer' && !request()->routeIs('streamer.listing'))
 <form action="{{ route('streamer.listing') }}" class="form-design">
+<div class="form-close-btn dsk-hide">
+      <button class="close-form-btn"><i class="fa-solid fa-xmark"></i></button>
+   </div>
 	<div class="row">
 		<div class="col-md-3">
 			<div class="form-grouph select-design">

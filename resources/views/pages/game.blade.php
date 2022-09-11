@@ -118,23 +118,17 @@
     </div>
   </div>
  </section>
-
-
-
-
- <section class="desk-files-sec">
+ <section class="video-slider-main-sec">
   <div class="container-1205px">
-    <div class="row">
-      
+  <div class="slider game-ss-slider">
       @foreach($game->youtube_array as $link)
-      <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12">
+      <div>
         <div class="embed-responsive embed-responsive-16by9">
         <iframe class="embed-responsive-item" allowfullscreen src="{{ $link }}">
         </iframe>
       </div>
       </div>
         @endforeach
-
     </div>
   </div>
  </section>

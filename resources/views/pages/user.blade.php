@@ -24,6 +24,7 @@
       <div class="container-for-box">
         <div class="row">
           <div class="col-xl-3 col-md-3 col-sm-12">
+          <div class="uploaded-btn0favourite-btn">
           <div class="uploaded-img-view position-relative">
             @if(@$user->profile_pic)
             <img src="{{ $user->profile_pic }}">
@@ -68,7 +69,7 @@
 
           </a>
           @endif
-
+            </div>
 
 
 
@@ -206,18 +207,22 @@
                 $games = $user->games()->whereStatus('1')->get();
                 @endphp
                 @if(@$games)
-                <h3>Games</h3>
-                <div class="row">
+                <div class="url-field games-slider">
+                  <h4 class="h4-design">Games</h4>
+                <div class="slider game-ss-slider">
                   @foreach($games as $game)
-                  <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12">
+                  <div>
+                    <div class="slider-design-2">
                     <a href="{{ route('game.view', [$game->id, $game->slug]) }}">
                       @if($game->full_image)
                       <img src="{{ $game->full_image }}">
                       @endif
-                      <b>{{ $game->title }}</b>
+                      <h5>{{ $game->title }}</h5>
                     </a>
                   </div>
+                  </div>
                     @endforeach
+                </div>
                 </div>
                 @endif
 
@@ -226,18 +231,22 @@
                 $news = $user->news()->whereStatus('1')->where('publish_date', '<=', date('Y-m-d'))->get();
                 @endphp
                 @if(@$news)
-                <h3>News</h3>
-                <div class="row">
+                <div class="url-field games-slider">
+                  <h4 class="h4-design">News</h4>
+                <div class="slider game-ss-slider">
                   @foreach($news as $data)
-                  <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12">
+                  <div>
+                    <div class="slider-design-2">
                     <a href="{{ route('news.view', [$data->id, $data->slug]) }}">
                       @if($data->full_image)
                       <img src="{{ $data->full_image }}">
                       @endif
-                      <b>{{ $data->title }}</b>
+                      <h5>{{ $data->title }}</h5>
                     </a>
                   </div>
+                  </div>
                     @endforeach
+                </div>
                 </div>
                 @endif
 

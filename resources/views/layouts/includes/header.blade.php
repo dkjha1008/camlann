@@ -44,5 +44,9 @@
 				</div>
 			</li>
 		</ul>
+		<div class="abs-toggle-btn d-hide">
+          <button class="toggle-btn"><i class="fa-solid fa-bars"></i></button>
+        </div>
+		<button class="toggle-search-form dsk-hide"><i class="fas fa-search"></i></button>
 	</div>
 </header>
