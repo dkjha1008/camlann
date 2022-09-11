@@ -2,11 +2,13 @@
 @section('content')
 <div class="dashboard-main-files-wrapper">
   <div class="row">
-  <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+
 	@if(@count($news)>0)
+	<div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
 	@include('pages.dashboard.news', ['news'=>$news])
+	</div>
 	@endif
-   </div>	
+
    <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
 	@if($user->role=='studio')
 	
@@ -26,16 +28,20 @@
 
 	@endif
     </div>
-	<div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+	
 	@if(@count($favGames)>0)
-	@include('pages.dashboard.favGames', ['favGames'=>$favGames])
-	@endif
-    </div>
 	<div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
-	@if(@$messages)
-	@include('pages.contact.table', ['users'=>$messages])
+	@include('pages.dashboard.favGames', ['favGames'=>$favGames])
+	</div>
 	@endif
+
+
+	@if(@count($messages)>0)
+	<div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+	@include('pages.contact.table', ['users'=>$messages])
     </div>
+	@endif
+	
 </div>
 </div>
 @endsection

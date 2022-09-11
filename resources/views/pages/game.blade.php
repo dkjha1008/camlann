@@ -103,22 +103,28 @@
   </div>
   </div>
  </section>
+ 
+ @if(@$game->full_screenshort)
  <section class="game-screenshots-design">
   <div class="container-1205px">
     <div class="game-ss-header">
       <h2 class="h2-design">Game Screenshots</h2>
     </div>
     <div class="slider game-ss-slider">
-    	@foreach($game->full_screenshort as $img)
+      @foreach($game->full_screenshort as $img)
       <div>
-      	 <img src="{{ $img }}"  >
+         <img src="{{ $img }}"  >
       </div>
       @endforeach
      
     </div>
   </div>
  </section>
- <section class="video-slider-main-sec">
+@endif
+
+
+@if(@$game->youtube_array)
+ <section class="desk-files-sec">
   <div class="container-1205px">
   <div class="slider game-ss-slider">
       @foreach($game->youtube_array as $link)
@@ -132,5 +138,6 @@
     </div>
   </div>
  </section>
+ @endif
  
 @endsection
