@@ -1686,11 +1686,196 @@ a.profile-links {
 .dropdown-item.active, .dropdown-item:active {
     background-color: #ec428a !important;
 }
-
+.video-slider-main-sec {
+    padding-bottom: 60px;
+    background-color: #f5f3f9;
+    padding-top: 60px;
+}
+.video-slider-main-sec iframe {
+    width: 100%;
+    height: 300px;
+}
+.tags-white-wrapper .view-btn {
+    text-align: right;
+    margin-bottom: 30px;
+    display: block;
+}
+.tags-list-design li a {
+    text-decoration: none;
+    color: #333;
+}
+.uploaded-btn0favourite-btn {
+    position: relative;
+}
+.uploaded-btn0favourite-btn .view-btn {
+    background-color: #fff;
+    filter: drop-shadow(0px 0px 44px rgba(0, 0, 0, 0.15));
+    padding: 4px 0px;
+    width: 100%;
+    display: block;
+    margin-top: 15px;
+    max-width: 50px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.uploaded-btn0favourite-btn .btn {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 30px;
+    max-width: 150px;
+    display: block;
+}
+.uploaded-btn0favourite-btn .btn:hover {
+    background-color: #231969;
+    color: #fff;
+    border-color: #231969;
+}
+.publication_list-design {
+    text-align: center;
+}
+.publication_list-design a {
+    display: block;
+    text-decoration: none;
+}
+.publication_list-design h5 {
+    color: #333;
+    font-size: 16px;
+    margin-top: 15px;
+    margin-bottom: 0px;
+}
+.publication_list-design img {
+    max-width: 100%;
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+.publication_list-design {
+    text-align: center;
+    filter: drop-shadow(0px 0px 44px rgba(0, 0, 0, 0.15));
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 8px;
+}
+.publication_list-design a:hover h5 {
+    color: #231969;
+}
+.url-field .slick-list {
+    padding: 15px 0px;
+}
+.slider-design-2 {
+    text-align: center;
+    filter: drop-shadow(0px 0px 4px rgba(0, 0, 0, 0.15));
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 8px;
+}
+.slider-design-2 a {
+    display: block;
+    text-decoration: none;
+}
+.slider-design-2 img {
+    height: 150px !important;
+    margin-bottom: 15px;
+}
+.slider-design-2 h5 {
+    font-size: 14px;
+    color: #333;
+}
+.slider-design-2:hover h5 {
+    color: #231969;
+    cursor: pointer;
+}
+.dashboard-main-files-wrapper .container-for-box {
+    height: 100%;
+}
+.dashboard-main-files-wrapper>.row>div {
+    margin-bottom: 24px;
+}
+.form-design.active {
+    display: flex !important;
+}
+.form-close-btn {
+    display: block;
+    position: absolute;
+    right: 15px;
+    z-index: 999999;
+    top: 0;
+    padding: 15px;
+}
+.close-form-btn {
+    background: transparent;
+    border: none;
+    color: #fff;
+    font-size: 20px;
+}
+.header-wrapper .dashboard-icon>.dropdown {
+    display: flex;
+    flex-direction: row;
+}
+.header-wrapper .dashboard-icon>.dropdown>a.btn-dashboard {
+    background-color: var(--pink);
+    width: 100%;
+    border: none;
+    color: #fff;
+    font-size: 14px;
+    border-radius: 8px;
+    padding: 10px 15px;
+    text-decoration: none;
+}
+.header-wrapper .dashboard-icon>.dropdown>.btn-dashboard:first-child {
+    margin-right: 15px;
+}
 @media (min-width: 1200px){
     .view-data-box {
         padding-left: 30px;
     }
+    .dsk-hide {
+        display: none;
+    }
 }
 
-
+@media (max-width: 1199px){
+    .header-wrapper {
+        position: relative;
+    }
+    .toggle-search-form {
+        position: absolute;
+        left: 0px;
+    }
+    .toggle-search-form {
+        position: absolute;
+        left: 30px;
+        border: none;
+        background: transparent;
+    }
+    .header-wrapper form.form-design {
+        position: fixed;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        background-color: rgba(0,0,0,0.7);
+        align-items: center;
+        z-index: 999;
+        justify-content: center;
+        height: 100vh;
+        overflow: auto;
+        transition: all 0.5s ease-in-out;
+        display: none;
+    }
+    .header-wrapper form.form-design .row {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 10px;
+    }
+    .header-wrapper form.form-design .row>div {
+        width: 100%;
+        margin-bottom: 15px;
+    }
+    .header-wrapper form.form-design .row>div:last-child {
+        margin-bottom: 0px;
+        text-align: center;
+    }
+}

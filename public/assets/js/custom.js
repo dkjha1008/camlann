@@ -91,7 +91,30 @@ $(".game-ss-slider").slick({
   infinite: true,
   centerMode: false,
   slidesToShow: 3,
-  slidesToScroll: 1
+  slidesToScroll: 1,
+  responsive: [
+    {
+      breakpoint: 1200,
+      settings: {
+        slidesToShow: 3,
+        slidesToScroll: 1,
+      },
+    },
+    {
+      breakpoint: 992,
+      settings: {
+        slidesToShow: 2,
+        slidesToScroll: 1,
+      },
+    },
+    {
+      breakpoint: 767,
+      settings: {
+        slidesToShow: 1,
+        slidesToScroll: 1,
+      },
+    }
+  ],
 });
 });
 $(document).ready(function(){
@@ -102,3 +125,11 @@ $(document).ready(function(){
     $('#sidebar').removeClass('active');
     });
 });
+$(document).ready(function(){
+  $('.toggle-search-form').click(function(){
+  $('.form-design').addClass('active');
+  });
+  $('.close-form-btn').click(function(){
+    $('.form-design').removeClass('active');
+    });
+  });

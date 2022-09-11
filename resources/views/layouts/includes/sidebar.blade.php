@@ -1,5 +1,8 @@
 <div id="sidebar">
 	<div class="sidebar-wrapper">
+	<div class="sidebar-close-btn d-hide">
+      <button class="close-btn"><i class="fa-solid fa-xmark"></i></button>
+   </div>
 		<div class="sidebar-logo-wraapper">
 			<a href="{{ route($user->role) }}"><img src="{{ asset('assets/images/dark-logo.png') }}"></a>
 		</div>
