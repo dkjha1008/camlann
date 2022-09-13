@@ -86,8 +86,8 @@
 <div class="addNewLayout">
 	{!! Form::label('youtube','Embedded Youtube video(s)', ['class' => 'form-label']) !!}
 
-	@if(@$game->youtube_array)
-	@foreach($game->youtube_array as $i => $link)
+	@if(@$game->youtube)
+	@foreach($game->youtube as $i => $link)
 	<div class="layout layout-{{$i+1}}">
 		<div class="row">
 			<div class="col-md-10">

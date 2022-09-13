@@ -48,7 +48,7 @@ class CreateNewUser implements CreatesNewUsers
         $user->save();
 
 
-        if($input['role'] != 'studio' && $input['publication_id']){
+        if($input['role'] == 'reporter' && $input['publication_id']){
 
             $store = new PublicationReporter;
             $store->users_id = $user->id;

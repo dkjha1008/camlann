@@ -119,7 +119,7 @@ $publications = \App\Models\Publication::whereStatus('1')->pluck('publication', 
 		$('select[name=publication_id]').removeAttr('required');
 		$('input[name=studio_name]').removeAttr('required');
 
-		if(val != 'studio'){
+		if(val == 'reporter'){
 			$('.publication').show();
 			$('select[name=publication_id]').attr('required', 'required');
 		}
