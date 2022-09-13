@@ -63,8 +63,8 @@
       @if($game->full_exe)
       <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 mb-3">
           <div class="link-button_design">
-            <h4 class="h4-design">Exe File</h4>
-            <a href="{{ $game->full_exe }}"  class="btn-design">Download</a> 
+            <h4 class="h4-design">Playable Demo Exe</h4>
+            <a href="{{ $game->full_exe }}" class="btn-design">Download</a> 
           </div>
       </div>
       @endif
@@ -72,17 +72,17 @@
       @if($game->playable_demo)
       <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 mb-3">
           <div class="link-button_design">
-             <h4 class="h4-design">Playable Demo</h4>
+             <h4 class="h4-design">Playable Demo Link</h4>
             <a href="{{ $game->playable_demo }}" class="btn-design">Playable Demo</a>
           </div>
       </div>
       @endif
 
-      @if($game->attach_files)
+      @if($game->full_attach_files)
       <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 mb-3">
           <div class="link-button_design">
-          <h4 class="h4-design">Attachment File</h4>
-            <a href="{{ $game->attach_files }}" class="btn-design">Download</a>
+          <h4 class="h4-design">Pitch Deck</h4>
+            <a href="{{ $game->full_attach_files }}" class="btn-design">Download</a>
           </div>
       </div>
       @endif

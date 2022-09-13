@@ -19,6 +19,7 @@ class News extends Model
 		}
 		return '';
     }
+
 	
 	
 	public function newsGames()

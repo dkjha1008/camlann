@@ -206,7 +206,7 @@
                 @php
                 $games = $user->games()->whereStatus('1')->get();
                 @endphp
-                @if(@$games)
+                @if(@count($games) > 0)
                 <div class="url-field games-slider">
                   <h4 class="h4-design">Games</h4>
                 <div class="slider game-ss-slider">
@@ -230,7 +230,7 @@
                 @php
                 $news = $user->news()->whereStatus('1')->where('publish_date', '<=', date('Y-m-d'))->get();
                 @endphp
-                @if(@$news)
+                @if(@count($news) > 0)
                 <div class="url-field games-slider">
                   <h4 class="h4-design">News</h4>
                 <div class="slider game-ss-slider">

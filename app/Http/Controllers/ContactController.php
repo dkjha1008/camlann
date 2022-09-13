@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
+use Illuminate\Support\Facades\Notification;
+use App\Notifications\ContactNotification;
+
 use App\Models\user;
 use App\Models\Contact;
 use App\Models\Favourite;
@@ -77,6 +80,12 @@ class ContactController extends Controller
         $contact->save(); 
 		
 		
+		try{
+			Notification::route('mail', $userData->email)
+				->notify(new ContactNotification($user, $authUser, $request->message));
+		} catch(Exception $e) { }
+
+
 		$this->flash('success', 'Message send successfully');
         return redirect()->back();
 	}

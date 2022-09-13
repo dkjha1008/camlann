@@ -46,12 +46,24 @@ class Listing extends Component
 	
 	public function search()
     {
+
+    	$this->validate([
+            'user_type' => 'required',
+        ]);
+
+
         $data = User::whereRole($this->user_type)
 						->where(function ($query) {
 							if($this->keyword){
+								$keys = explode(' ', $this->keyword);
+								
+
 								$query->where('first_name', 'like', '%'.$this->keyword.'%');
-								$query->orWhere('last_name', 'like', '%'.$this->keyword.'%');
-								$query->orWhere('email', 'like', '%'.$this->keyword.'%');
+								foreach($keys as $key){
+									$query->orWhere('first_name', 'like', '%'.$key.'%');
+									$query->orWhere('last_name', 'like', '%'.$key.'%');
+									$query->orWhere('email', 'like', '%'.$key.'%');
+								}
 							}
 							
 							if($this->publication) {
