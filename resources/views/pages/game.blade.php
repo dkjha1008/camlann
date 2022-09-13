@@ -123,21 +123,21 @@
 @endif
 
 
-@if(@$game->youtube_array)
- <section class="desk-files-sec">
+@if(@count($game->youtube_array)>0)
+<section class="video-slider-main-sec">
   <div class="container-1205px">
-  <div class="slider game-ss-slider">
-      @foreach($game->youtube_array as $link)
-      <div>
-        <div class="embed-responsive embed-responsive-16by9">
-        <iframe class="embed-responsive-item" allowfullscreen src="{{ $link }}">
-        </iframe>
-      </div>
-      </div>
+    <div class="slider game-ss-slider">
+        @foreach($game->youtube_array as $link)
+        <div>
+            <div class="embed-responsive embed-responsive-16by9">
+            <iframe class="embed-responsive-item" allowfullscreen src="{{ $link }}">
+            </iframe>
+          </div>
+          </div>
         @endforeach
     </div>
-  </div>
- </section>
+</div>
+</section>
  @endif
  
 @endsection

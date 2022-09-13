@@ -13,9 +13,17 @@ class Game extends Model
         'youtube_array', 'full_image', 'full_screenshort', 'full_attach_files', 'full_exe'
     ];
 
+    public function getYoutubeAttribute($value){
+		if(@$value){
+			return json_decode($value);
+		}
+		return ''; 
+    }
+
     public function getYoutubeArrayAttribute(){
 		if(@$this->youtube){
-			$data = json_decode($this->youtube);
+			//$data = json_decode($this->youtube);
+			$data = $this->youtube;
 			$newArray = [];
 			foreach($data as $url){				
 				parse_str(parse_url($url, PHP_URL_QUERY), $result);
