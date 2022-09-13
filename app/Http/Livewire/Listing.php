@@ -44,13 +44,23 @@ class Listing extends Component
 	
 	public function search()
     {
+    	$this->validate([
+            'type' => 'required',
+        ]);
+        
 		if($this->type == 'studio'){
 			$this->searchData = User::whereRole('studio')
 						->where(function ($query) {
 							if($this->keyword){
+								$keys = explode(' ', $this->keyword);
+								
+
 								$query->where('first_name', 'like', '%'.$this->keyword.'%');
-								$query->orWhere('last_name', 'like', '%'.$this->keyword.'%');
-								$query->orWhere('email', 'like', '%'.$this->keyword.'%');
+								foreach($keys as $key){
+									$query->orWhere('first_name', 'like', '%'.$key.'%');
+									$query->orWhere('last_name', 'like', '%'.$key.'%');
+									$query->orWhere('email', 'like', '%'.$key.'%');
+								}
 							}
 
 							if($this->tag){

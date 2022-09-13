@@ -134,9 +134,18 @@ class NewsController extends Controller
 
      public function view($news){
 
+    	if(!$news){
+    		abort(404);
+    	}
 
     	$new = News::where('id', '=' , $news)->first();
-    	return view('studio.news.view', compact('new'));
+    	
+		$title = array(
+			'title' => $new->title,
+			'active' => 'news',
+		);
+
+    	return view('studio.news.view', compact('title', 'new'));
     }
 	
 	public function update(Request $request, News $news)

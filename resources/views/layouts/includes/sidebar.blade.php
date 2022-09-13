@@ -36,6 +36,7 @@
 				
 				<li class="nav-divider"></li>
 				
+				@if($user->role != 'admin')
 				<li class="nav-item">
 					<a href="{{ route('contact.index') }}">
 						<svg width="18" height="18" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -45,6 +46,8 @@
 						Help
 					</a>
 				</li>
+				@endif
+
 				<li class="nav-item">
 					<a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form-side').submit();">
 						<svg width="18" height="16" viewBox="0 0 18 16" fill="none" xmlns="http://www.w3.org/2000/svg">

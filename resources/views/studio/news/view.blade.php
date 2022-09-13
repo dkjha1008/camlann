@@ -18,15 +18,16 @@
         <div class="row">
           <div class="col-xl-3 col-md-3 col-sm-12">
           <div class="uploaded-img-view position-relative">
-            <img src="{{ asset('assets/images/thumbnail.png') }}">
-            <span class="profile-visibility-tag">Active</span>
+            @if(@$new->full_image)
+            <img src="{{$new->full_image}}">
+            @endif
           </div>
           </div>
           <div class="col-xl-9 col-md-9 col-sm-12">
             <div class="view-data-box">
                  <div class="description-text-design">
                   <h4 class="h4-design">Publish Date</h4>
-                  <p>10 sep 2022</p>
+                  <p>{{ date('d M Y', strtotime($new->publish_date)) }} </p>
                 </div>
                 <div class="tags-data">
                   <h4 class="h4-design">Games Tags</h4>

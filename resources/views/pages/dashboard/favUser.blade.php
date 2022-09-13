@@ -8,6 +8,7 @@
 				<thead>
 					<tr>
 						<th>Name</th>
+						<th>Email</th>
 						<th>View</th>
 					</tr>
 				</thead>
@@ -24,6 +25,9 @@
 								@endif
 								<span class="game-title">{{ $user->name }}</span>
 							</div>
+						</td>
+						<td>
+							{{ $user->email }}
 						</td>
 						<td>
 							<div class="edit-view-btns">

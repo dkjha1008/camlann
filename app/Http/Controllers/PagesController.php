@@ -24,8 +24,17 @@ class PagesController extends Controller
     //
     public function userView(User $user)
     {
+    	if(!$user){
+    		abort(404);
+    	}
+
+        if($user->role=='admin'){
+            abort(404);
+        }
+
+
 		$title = array(
-			'title' => 'Home',
+			'title' => $user->name,
 			'active' => 'user',
 		);
 		
@@ -35,8 +44,12 @@ class PagesController extends Controller
     //
     public function gameView(Game $game)
     {
+    	if(!$game){
+    		abort(404);
+    	}
+
 		$title = array(
-			'title' => 'Home',
+			'title' => $game->title,
 			'active' => 'game',
 		);
 		
@@ -46,8 +59,12 @@ class PagesController extends Controller
     //
     public function publicationView(Publication $publication)
     {
+    	if(!$publication){
+    		abort(404);
+    	}
+
 		$title = array(
-			'title' => 'Publication View',
+			'title' => $publication->publication,
 			'active' => 'publication',
 		);
 		

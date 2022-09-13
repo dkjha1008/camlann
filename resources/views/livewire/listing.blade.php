@@ -10,6 +10,7 @@
 						<option value="studio">Studio</option>
 						<option value="game">Game</option>
 					</select>
+					{!! $errors->first('type', '<span class="help-block">:message</span>') !!}
 				</div>
 			</div>
 			

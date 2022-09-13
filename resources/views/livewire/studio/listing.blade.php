@@ -8,6 +8,7 @@
 						<option value="reporter">Reporter</option>
 						<option value="streamer">Streamer</option>
 					</select>
+					{!! $errors->first('user_type', '<span class="help-block">:message</span>') !!}
 				</div>
 			</div>
 			<div class="col-md-2 input-box">
@@ -79,7 +80,7 @@
 			@endforeach
 			@else
 			<tr>
-		    <td class="nodata">No Data Found</td>
+		    <td colspan="3" class="nodata">No Data Found</td>
 			</tr>
 			@endif
 			</tbody>
