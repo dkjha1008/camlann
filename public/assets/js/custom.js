@@ -140,6 +140,7 @@ $(document).ready(function(){
       vertical: true,
       slidesToShow: 2,
       slidesToScroll: 1,
+      centerMode: false,
       responsive: [
         {
           breakpoint: 1200,
@@ -150,17 +151,7 @@ $(document).ready(function(){
         },
         {
           breakpoint: 992,
-          settings: {
-            slidesToShow: 2,
-            slidesToScroll: 1,
-          },
-        },
-        {
-          breakpoint: 767,
-          settings: {
-            slidesToShow: 2,
-            slidesToScroll: 1,
-          },
+          settings: "unslick"
         }
       ],
     });

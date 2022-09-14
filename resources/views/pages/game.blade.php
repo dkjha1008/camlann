@@ -12,7 +12,7 @@
 		<div class="row">
 			<div class="col-xl-8 col-lg-8 col-md-12 col-sm-12">
 				<div class="game-view-left-content">
-					<div class="favorite-header-main mb-4">
+					<div class="favorite-header-main mb-4 text-right">
 						@if(auth()->check())
 						@php
 						$favouritesGame = auth()->user()->favouriteGames()->pluck('games_id')->toArray();
@@ -44,8 +44,41 @@
 						@endif
 						@endif
 					</div>
-					@if($game->gameTags)
-					<div class="tags-data mb-3">
+          @if($game->description)
+					<div class="description-text mb-3">
+						<p>{!! $game->description !!}</p>
+					</div>
+					@endif
+          <div class="row">
+					@if($game->full_exe)
+          <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12">
+					<div class="link-button_design mb-4">
+						<h4 class="h4-design">Playable Demo Exe</h4>
+						<a href="{{ $game->full_exe }}" class="btn-design">Download</a> 
+					</div>
+          </div>
+					@endif
+					
+					@if($game->playable_demo)
+          <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12">
+					<div class="link-button_design mb-4">
+						<h4 class="h4-design">Playable Demo Link</h4>
+						<a href="{{ $game->playable_demo }}" class="btn-design">Playable Demo</a>
+					</div>
+          </div>
+					@endif
+					
+					@if($game->full_attach_files)
+          <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12">
+					<div class="link-button_design mb-4">
+						<h4 class="h4-design">Pitch Deck</h4>
+						<a href="{{ $game->full_attach_files }}" class="btn-design">Download</a>
+					</div>
+          </div>
+					@endif
+          </div>
+          @if($game->gameTags)
+					<div class="tags-data mb-4">
 						<h4 class="h4-design">Game Tags</h4>
 						<ul class="list-unstyled tags-list-design">
 							@foreach($game->gameTags as $tag)
@@ -54,41 +87,14 @@
 						</ul>
 					</div>
 					@endif
-					@if($game->full_exe)
-					<div class="link-button_design mb-3">
-						<h4 class="h4-design">Playable Demo Exe</h4>
-						<a href="{{ $game->full_exe }}" class="btn-design">Download</a> 
-					</div>
-					@endif
-					
-					@if($game->playable_demo)
-					<div class="link-button_design mb-3">
-						<h4 class="h4-design">Playable Demo Link</h4>
-						<a href="{{ $game->playable_demo }}" class="btn-design">Playable Demo</a>
-					</div>
-					@endif
-					
-					@if($game->full_attach_files)
-					<div class="link-button_design mb-3">
-						<h4 class="h4-design">Pitch Deck</h4>
-						<a href="{{ $game->full_attach_files }}" class="btn-design">Download</a>
-					</div>
-					@endif
-					
-					@if($game->description)
-					<div class="description-text mb-3">
-						<h4 class="h4-design">Description</h4>
-						<p>{!! $game->description !!}</p>
-					</div>
-					@endif
 				</div>
 			</div>
 			<div class="col-xl-4 col-lg-4 col-md-12 col-sm-12">
 				<div class="game-view-right-content">
 					@if(@count($game->youtube_array)>0)
-					<div class="slider verticle-slider videos">
+					<div class="video-sidebar-sec mb-3">
 						@foreach($game->youtube_array as $link)
-						<div>
+						<div class="video-main-wrapper">
 							<div class="embed-responsive embed-responsive-16by9">
 								<iframe class="embed-responsive-item" allowfullscreen src="{{ $link }}">
 								</iframe>
@@ -98,7 +104,7 @@
 					</div>
 					@endif
 					@if(@$game->full_screenshort)
-					<div class="slider verticle-slider ss-games">
+					<div class="ss-games">
 						@foreach($game->full_screenshort as $i => $img)
 						<div>
 							<img src="{{ $img }}" class="openModal" data-id="{{ $i }}">
