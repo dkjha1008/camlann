@@ -1248,6 +1248,13 @@ p:empty{
     justify-content: center;
     min-width: auto;
 }
+.description-text p a {
+    text-decoration: none;
+    color: #ec539e;
+}
+.description-text p a:hover {
+    color: #231969;
+}
 
 @media (max-width: 991px){
     .authentication-sec>div {
