@@ -133,3 +133,35 @@ $(document).ready(function(){
     $('.form-design').removeClass('active');
     });
   });
+
+  $(document).ready(function(){
+    $(".verticle-slider").slick({
+      dots: true,
+      vertical: true,
+      slidesToShow: 2,
+      slidesToScroll: 1,
+      responsive: [
+        {
+          breakpoint: 1200,
+          settings: {
+            slidesToShow: 2,
+            slidesToScroll: 1,
+          },
+        },
+        {
+          breakpoint: 992,
+          settings: {
+            slidesToShow: 2,
+            slidesToScroll: 1,
+          },
+        },
+        {
+          breakpoint: 767,
+          settings: {
+            slidesToShow: 2,
+            slidesToScroll: 1,
+          },
+        }
+      ],
+    });
+    });
