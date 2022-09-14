@@ -44,40 +44,40 @@
 						@endif
 						@endif
 					</div>
-          @if($game->description)
+					@if($game->description)
 					<div class="description-text mb-3">
 						<p>{!! $game->description !!}</p>
 					</div>
 					@endif
-          <div class="row">
-					@if($game->full_exe)
-          <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12">
-					<div class="link-button_design mb-4">
-						<h4 class="h4-design">Playable Demo Exe</h4>
-						<a href="{{ $game->full_exe }}" class="btn-design">Download</a> 
+					<div class="row">
+						@if($game->full_exe)
+						<div class="col-xl-4 col-lg-4 col-md-12 col-sm-12">
+							<div class="link-button_design mb-4">
+								<h4 class="h4-design">Playable Demo Exe</h4>
+								<a href="{{ $game->full_exe }}" class="btn-design">Download</a> 
+							</div>
+						</div>
+						@endif
+						
+						@if($game->playable_demo)
+						<div class="col-xl-4 col-lg-4 col-md-12 col-sm-12">
+							<div class="link-button_design mb-4">
+								<h4 class="h4-design">Playable Demo Link</h4>
+								<a href="{{ $game->playable_demo }}" class="btn-design">Playable Demo</a>
+							</div>
+						</div>
+						@endif
+						
+						@if($game->full_attach_files)
+						<div class="col-xl-4 col-lg-4 col-md-12 col-sm-12">
+							<div class="link-button_design mb-4">
+								<h4 class="h4-design">Pitch Deck</h4>
+								<a href="{{ $game->full_attach_files }}" class="btn-design">Download</a>
+							</div>
+						</div>
+						@endif
 					</div>
-          </div>
-					@endif
-					
-					@if($game->playable_demo)
-          <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12">
-					<div class="link-button_design mb-4">
-						<h4 class="h4-design">Playable Demo Link</h4>
-						<a href="{{ $game->playable_demo }}" class="btn-design">Playable Demo</a>
-					</div>
-          </div>
-					@endif
-					
-					@if($game->full_attach_files)
-          <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12">
-					<div class="link-button_design mb-4">
-						<h4 class="h4-design">Pitch Deck</h4>
-						<a href="{{ $game->full_attach_files }}" class="btn-design">Download</a>
-					</div>
-          </div>
-					@endif
-          </div>
-          @if($game->gameTags)
+					@if(count($game->gameTags)>0)
 					<div class="tags-data mb-4">
 						<h4 class="h4-design">Game Tags</h4>
 						<ul class="list-unstyled tags-list-design">
@@ -87,6 +87,11 @@
 						</ul>
 					</div>
 					@endif
+
+					<div class="tags-data mb-4">
+						<h4 class="h4-design">Studio Name</h4>
+						<a href="{{ route('user.view',  @$game->user->id) }}" class="btn-design">{{ @$game->user->userStudio->studio_name }}</a>
+					</div>
 				</div>
 			</div>
 			<div class="col-xl-4 col-lg-4 col-md-12 col-sm-12">
@@ -110,7 +115,6 @@
 							<img src="{{ $img }}" class="openModal" data-id="{{ $i }}">
 						</div>
 						@endforeach
-						
 					</div>
 					@endif
 				</div>

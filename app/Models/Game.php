@@ -85,5 +85,10 @@ class Game extends Model
     {
         return $this->hasMany(GameTag::class, 'games_id', 'id');
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'users_id', 'id');
+    }
 	
 }
