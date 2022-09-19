@@ -79,7 +79,7 @@ class Listing extends Component
 				->where(function ($query) {
 					if($this->keyword){
 						$query->where('title', 'like', '%'.$this->keyword.'%');
-						$query->orWhere('comps', 'like', '%'.$this->keyword.'%');
+						//$query->orWhere('comps', 'like', '%'.$this->keyword.'%');
 					}
 					if($this->tag){
 						$query->whereHas('gameTags', function ($que) {
@@ -98,7 +98,7 @@ class Listing extends Component
     	$url = route($this->user->role .'.listing', [
 			'type' => $this->type,
 			'keyword' => $this->keyword,
-			'tag' => $this->tag
+			//'tag' => $this->tag
 		]);
 
     	$this->emit('urlChange', $url);

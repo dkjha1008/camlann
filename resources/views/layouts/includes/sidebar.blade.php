@@ -4,16 +4,12 @@
       <button class="close-btn"><i class="fa-solid fa-xmark"></i></button>
    </div>
 		<div class="sidebar-logo-wraapper">
-			<a href="{{ route($user->role) }}"><img src="{{ asset('assets/images/dark-logo.png') }}"></a>
+			<a href="{{ route($user->role ?? 'home') }}"><img src="{{ asset('assets/images/dark-logo.png') }}"></a>
 		</div>
 		<div class="sidebar-list">
 			<ul class="list-unstyled">
 			
 				
-
-
-
-
 				<li class="nav-item">
 					<a href="{{ route('dashboard') }}">
 						<svg width="18" height="18" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -27,8 +23,7 @@
 
 
 
-
-			
+				@if(auth()->check())
 				@include('layouts.includes.sidebars.'.$user->role)
 				
 				
@@ -48,6 +43,8 @@
 				</li>
 				@endif
 
+
+
 				<li class="nav-item">
 					<a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form-side').submit();">
 						<svg width="18" height="16" viewBox="0 0 18 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -59,6 +56,10 @@
 						@csrf
 					</form>
 				</li>
+
+				@endif
+
+
 			</ul>
 		</div>
 	</div>
