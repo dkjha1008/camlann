@@ -1,5 +1,10 @@
 @php
-$user = auth()->user();
+$user = '';
+
+if(auth()->check()){
+	$user = auth()->user();
+}
+
 @endphp
 
 <!doctype html>
@@ -12,7 +17,7 @@ $user = auth()->user();
 	<body class="light-theme">
 	
 		<div class="view-wrapper dashboard-wrapper">
-			
+
 			@include('layouts.includes.header_view_page', ['user'=>$user])
 			
 			@yield('content')
@@ -28,7 +33,9 @@ $user = auth()->user();
 			</footer>
 
 		</div>
+		
 		@include('layouts.includes.sidebar', ['user'=>$user])
+
 		@include('layouts.includes.scripts')
 	
 		<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>

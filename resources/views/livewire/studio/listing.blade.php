@@ -26,7 +26,7 @@
 					</select>
 				</div>
 			</div>
-
+			
 			@if(@$publications)
 			<div class="col-md-3 input-box">
 				<div class="form-grouph select-design ">
@@ -39,7 +39,7 @@
 				</div>
 			</div>
 			@endif
-
+			
 			<div class="col-md-2 input-box">
 				<button class="submit-short-btn" type="button" wire:click="search" wire:loading.attr="disabled">
 					<i wire:loading wire:target="search" class="fa fa-spin fa-spinner"></i> {{__ ('Search') }}
@@ -47,48 +47,57 @@
 			</div>
 		</div>
 	</form>
-
-
-
+	
+	
+	
 	<div class="row">
 		<div class="table-design table-responsive">
 			<table>
-			<thead>
-				<tr>
-					<th>Name</th>
-					<th>Email</th>
-					<th>Actions</th>
-				</tr>
-			</thead>
-			<tbody>
-			@if(count($searchData) > 0)
-			@foreach($searchData as $user)
-			<tr>
-			<td>
-				<div class="game-title-img d-flex align-items-center">
-					<img src="{{ $user->profile_pic }}">
-					<span class="game-title">{{ $user->name }}</span>
-			   </div> 
-			</td>
-			<td>
-				 <a href="mailto:{{ $user->email }}" class="mail-text">{{ $user->email }}</a>
-			</td>
-			<td class="action-btns">
-				@include('livewire.studio.button')
-			</td>
-		   </tr>
-			@endforeach
-			@else
-			<tr>
-		    <td colspan="3" class="nodata">No Data Found</td>
-			</tr>
-			@endif
-			</tbody>
+				<thead>
+					<tr>
+						<th>Name</th>
+						<th>Email</th>
+						<th>Actions</th>
+					</tr>
+				</thead>
+				<tbody>
+					@if(!$searchData->isEmpty())
+					@foreach($searchData as $user)
+					<tr>
+						<td>
+							<div class="game-title-img d-flex align-items-center">
+								<img src="{{ $user->profile_pic }}">
+								<span class="game-title">{{ $user->name }}</span>
+							</div> 
+						</td>
+						<td>
+							<a href="mailto:{{ $user->email }}" class="mail-text">{{ $user->email }}</a>
+						</td>
+						<td class="action-btns">
+							@include('livewire.studio.button')
+						</td>
+					</tr>
+					@endforeach
+					@endif
+				</tbody>
 			</table>
+
+
+
+			@if($searchData->isEmpty())
+			<div class="no-data-found">
+				<div class="container-1205px">
+					<div class="nothing-here-yet">
+						<h4><i class="fas fa-database"></i> {{ $user_type=='reporter' ? 'Reporter' : 'Streamer' }} not found.</h4>
+					</div>
+				</div>
 			</div>
+			@endif
+
+		</div>
 	</div>
-
-
+	
+	
 	<!-- Accept Modal Start Here-->
     <div wire:ignore.self class="modal fade modal-design" id="contactForm" tabindex="-1" aria-labelledby="contactForm" aria-hidden="true">
         <div class="modal-dialog modal_style">
@@ -119,7 +128,7 @@
 			</div>
 		</div>
 	</div>
-
+	
 	@push('scripts')
     <script>
         $(document).ready(function () {
@@ -131,12 +140,12 @@
 			});
             window.livewire.on('urlChange', param => {
                 history.pushState(null, null, param);
-            });
+			});
 		});
         $(document).on('click', '.closeModal', function(e) {
             $('#contactForm').modal('hide');
 		});
 	</script>
     @endpush
-
+	
 </div>

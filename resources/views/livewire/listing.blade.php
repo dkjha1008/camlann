@@ -1,7 +1,7 @@
 <div class="container-for-box lsiting-wrapper_box">
     <form class="form-design">
 		<div class="row">
-		
+			
 			
 			<div class="col-md-3">
 				<div class="form-grouph select-design">
@@ -19,7 +19,7 @@
 					<input placeholder="Search keyword" wire:model="keyword" type="text">
 				</div>
 			</div>
-
+			
 			{{--
 			<div class="col-md-3">
 				<div class="form-grouph select-design">
@@ -46,65 +46,91 @@
 	<div class="row">
 		@if($type=='studio')
 		<div class="table-design table-responsive">
-		<table>
-		<thead>
-			<tr>
-				<th>Name</th>
-				<th>Email</th>
-				<th>Actions</th>
-			</tr>
-		</thead>
-		<tbody>
-		@foreach($searchData as $user)
-		<tr>
-		<td>
-			<div class="game-title-img d-flex align-items-center">
-				<img src="{{ $user->profile_pic }}">
-				<span class="game-title">{{ $user->userStudio->studio_name ?? $user->name }}</span>
-           </div> 
-		</td>
-		<td>
-			 <a href="mailto:{{ $user->email }}" class="mail-text">{{ $user->email }}</a>
-		</td>
-		<td class="action-btns">
-			@include('livewire.studio.button')
-		</td>
-	   </tr>
-		@endforeach
-		</tbody>
-		</table>
+			<table>
+				<thead>
+					<tr>
+						<th>Name</th>
+						<th>Email</th>
+						<th>Actions</th>
+					</tr>
+				</thead>
+				<tbody>
+					@if(count($searchData)>0)
+					@foreach($searchData as $user)
+					<tr>
+						<td>
+							<div class="game-title-img d-flex align-items-center">
+								<img src="{{ $user->profile_pic }}">
+								<span class="game-title">{{ $user->userStudio->studio_name ?? $user->name }}</span>
+							</div> 
+						</td>
+						<td>
+							<a href="mailto:{{ $user->email }}" class="mail-text">{{ $user->email }}</a>
+						</td>
+						<td class="action-btns">
+							@include('livewire.studio.button')
+						</td>
+					</tr>
+					@endforeach
+					@endif
+				</tbody>
+			</table>
+
+			@if(count($searchData)<=0)
+			<div class="no-data-found">
+				<div class="container-1205px">
+					<div class="nothing-here-yet">
+						<h4><i class="fas fa-database"></i> Studio not found.</h4>
+					</div>
+				</div>
+			</div>
+			@endif
+
 		</div>
 		@endif
-
+		
 		@if($type=='game')
 		<div class="table-design table-responsive">
 			<table>
-			<thead>
-				<tr>
-					<th>Name</th>
-					<th>Actions</th>
-				</tr>
-			</thead>
-			<tbody>
-				@foreach($searchDataGames as $game)
-			<tr>
-			<td>
-				<div class="game-title-img d-flex align-items-center">
-					<img src="{{ $game->full_image }}">
-					<span class="game-title">{{ $game->title }}</span>
-			   </div> 
-			</td>
-			<td class="action-btns">
-				@include('livewire.studio.button_game')
-			</td>
-		   </tr>
-		   @endforeach
-			</tbody>
+				<thead>
+					<tr>
+						<th>Name</th>
+						<th>Actions</th>
+					</tr>
+				</thead>
+				<tbody>
+					@if(count($searchDataGames)>0)
+					@foreach($searchDataGames as $game)
+					<tr>
+						<td>
+							<div class="game-title-img d-flex align-items-center">
+								<img src="{{ $game->full_image }}">
+								<span class="game-title">{{ $game->title }}</span>
+							</div> 
+						</td>
+						<td class="action-btns">
+							@include('livewire.studio.button_game')
+						</td>
+					</tr>
+					@endforeach
+					@endif
+				</tbody>
 			</table>
+
+			@if(count($searchDataGames)<=0)
+			<div class="no-data-found">
+				<div class="container-1205px">
+					<div class="nothing-here-yet">
+						<h4><i class="fas fa-database"></i> Game not found</h4>
+					</div>
+				</div>
 			</div>
 			@endif
-	</div>
 
+		</div>
+		@endif
+	</div>
+	
 	<!-- Accept Modal Start Here-->
     <div wire:ignore.self class="modal fade modal-design" id="contactForm" tabindex="-1" aria-labelledby="contactForm" aria-hidden="true">
         <div class="modal-dialog modal_style">
@@ -135,7 +161,7 @@
 			</div>
 		</div>
 	</div>
-
+	
 	@push('scripts')
     <script>
         $(document).ready(function () {
@@ -147,7 +173,7 @@
 			});
             window.livewire.on('urlChange', param => {
                 history.pushState(null, null, param);
-            });
+			});
 		});
         $(document).on('click', '.closeModal', function(e) {
             $('#contactForm').modal('hide');
