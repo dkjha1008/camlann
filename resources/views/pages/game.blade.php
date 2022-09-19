@@ -1,17 +1,15 @@
 @extends('layouts.app2')
 @section('content')
 <section class="banner-section--view" style="background-image: url('{{$game->full_image}}')">
-	<div class="container-1205px">
-		<div class="page-headeing-wrap">
-			<h1>{{$game->title}}</h1>
-		</div>
-	</div>
 </section>
 <section class="game-view-cntnt-wrapper">
 	<div class="container-1205px">
 		<div class="row">
 			<div class="col-xl-8 col-lg-8 col-md-12 col-sm-12">
 				<div class="game-view-left-content">
+				<div class="page-headeing-wrap">
+			         <h2>{{$game->title}}</h2>
+		            </div>
 					<div class="favorite-header-main mb-4 text-right">
 						@if(auth()->check())
 						@php

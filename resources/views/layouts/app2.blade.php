@@ -11,7 +11,7 @@ $user = auth()->user();
 	</head>
 	<body class="light-theme">
 	
-		<div class="view-wrapper">
+		<div class="view-wrapper dashboard-wrapper">
 			
 			@include('layouts.includes.header_view_page', ['user'=>$user])
 			
@@ -28,7 +28,7 @@ $user = auth()->user();
 			</footer>
 
 		</div>
-		
+		@include('layouts.includes.sidebar', ['user'=>$user])
 		@include('layouts.includes.scripts')
 	
 		<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>

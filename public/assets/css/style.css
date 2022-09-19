@@ -890,11 +890,6 @@ table {
 .edit-view-btns>a:hover svg path{
     fill: var(--blue);
 }
-
-.view-wrapper .main-header {
-    max-width: 100%;
-    width: 100%;
-}
 .view-wrapper .header-wrapper {
     display: flex;
     align-items: center;
@@ -923,12 +918,12 @@ table {
     padding-right: 15px;
 }
 .banner-section--view {
-    margin-top: 98px;
     padding: 6% 0 6% 0;
     background-size: cover;
     background-repeat: no-repeat;
     position: relative;
     z-index: 0;
+    height: 230px;
 }
 .banner-section--view::before {
     content: '';
@@ -948,6 +943,13 @@ table {
     color: #fff;
     font-size: 46px;
     font-weight: 500;
+}
+.page-headeing-wrap h2 {
+    text-align: left;
+    color: #000;
+    font-size: 30px;
+    font-weight: 500;
+    margin-bottom: 20px;
 }
 .tags-comps-data {
     background: transparent;
@@ -1956,7 +1958,7 @@ p:empty{
 }
 .game-view-right-content {
     padding: 20px;
-    background-color: #f5f3f8;
+    background-color: #fff;
     border-radius: 8px;
 }
 .game-view-right-content img {
@@ -1968,6 +1970,26 @@ p:empty{
 }
 .game-view-right-content img:hover {
     filter: brightness(0.7);
+}
+.no-data-found .nothing-here-yet {
+    background-color: #f5f3f9;
+    padding: 30px;
+    text-align: center;
+    border-radius: 15px;
+    margin: 15px 0px;
+}
+.no-data-found .nothing-here-yet h4 {
+    font-size: 18px;
+    color: #000;
+}
+.no-data-found .nothing-here-yet svg {
+    color: #ec428a;
+    margin-right: 15px;
+    position: relative;
+    top: 1px;
+}
+.view-wrapper.dashboard-wrapper .header-wrapper ul {
+    width: 100%;
 }
 
 
